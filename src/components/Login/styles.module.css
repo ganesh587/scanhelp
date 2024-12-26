@@ -1,0 +1,96 @@
+.login_container {
+  display: flex; /* Use flexbox for layout */
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7f4f2ff; /* Updated background color */
+}
+
+.left {
+  flex: 1; /* Take up one part of the flex container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    #fa7930,
+    #d76d2b
+  ); /* Gradient from #fa7930 to a darker orange */
+  color: #f7f4f2ff; /* Set the color of the title to #f7f4f2ff */
+  font-size: 48px; /* Larger font size for the title */
+}
+
+.right {
+  flex: 1; /* Take up one part of the flex container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* Add some padding */
+}
+
+.form_container {
+  width: 100%; /* Full width for the form */
+  max-width: 400px; /* Limit the maximum width */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+}
+
+.form_container h1 {
+  font-size: 30px;
+  margin: 0 0 10px; /* Space below the heading */
+}
+
+.input_container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0; /* Space between input fields */
+}
+
+.input {
+  width: 100%; /* Full width for input fields */
+  padding: 10px; /* Padding for input fields */
+  border: 1px solid #ccc; /* Border for input fields */
+  border-radius: 5px; /* Rounded corners */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.input:focus {
+  border-color: #fa7930; /* Change border color on focus */
+}
+
+.green_btn {
+  background: linear-gradient(
+    135deg,
+    #4caf50,
+    #388e3c
+  ); /* Gradient for button */
+  color: white; /* White text */
+  border: none;
+  padding: 10px 20px; /* Adjusted padding for smaller button */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition */
+  font-size: 16px; /* Adjusted font size */
+}
+
+.green_btn:hover {
+  background: linear-gradient(
+    135deg,
+    #388e3c,
+    #4caf50
+  ); /* Darker shade on hover */
+}
+
+.forgot_password {
+  margin-top: 10px; /* Space above the link */
+  color: #fa7930; /* Color for the forgot password link */
+  text-align: center; /* Center the text */
+}
+
+.register_text {
+  text-align: center; /* Center the text */
+  margin-top: 20px; /* Space above the register text */
+}
+
+.left h1 {
+  color: #f7f4f2ff;
+  font-size: 48px;
+}

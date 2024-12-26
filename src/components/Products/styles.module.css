@@ -1,0 +1,184 @@
+.products_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: f7f4f2ff; /* Dark background */
+  min-height: 100vh; /* Full height for better centering */
+  color: white; /* Default text color */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px; /* Limit header width */
+  margin-bottom: 20px; /* Space below header */
+}
+
+.profile_icon,
+.create_button {
+  color: black; /* Dark orange color for icons */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.profile_icon:hover,
+.create_button:hover {
+  color: darkgreen; /* Lighter orange on hover */
+}
+
+h1 {
+  margin-bottom: 30px; /* Space below the title */
+  color: #fa7930; /* Dark orange color for the title */
+  font-size: 2.5rem; /* Larger font size for the title */
+}
+
+.cards_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px; /* Limit card container width */
+}
+
+.card {
+  background: linear-gradient(
+    135deg,
+    #fa7930,
+    #ff6a00
+  ); /* Dark orange gradient */
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px;
+  width: 250px; /* Fixed width for cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  transition: transform 0.3s ease; /* Smooth scaling on hover */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between; /* Space between elements */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Slightly enlarge card on hover */
+}
+
+.card h2 {
+  margin: 0; /* Remove default margin */
+  font-size: 1.5rem; /* Font size for product name */
+}
+
+.card p {
+  margin: 5px 0; /* Space between paragraphs */
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: white; /* White text color for price */
+}
+
+.view_product_btn {
+  background-color: f7f4f2ff; /* Dark orange background for button */
+  color: black; /* White text color for button */
+  padding: 10px 15px; /* Padding for button */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners for button */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+  margin-top: 10px; /* Space above the button */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.view_product_btn:hover {
+  background-color: whitesmoke; /* Lighter orange on hover */
+  color: black;
+}
+
+.products_container h1 {
+  color: darkgreen;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Space below the header */
+}
+
+.profile_icon,
+.create_button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fa7930; /* Icon color */
+  transition: transform 0.2s; /* Smooth transition */
+}
+
+.profile_icon:hover,
+.create_button:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.products_container {
+  padding: 20px; /* Add padding around the container */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Space below the header */
+}
+
+.card {
+  background: linear-gradient(
+    135deg,
+    #fa7930,
+    #ff6a00
+  ); /* Gradient background for cards */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding inside the card */
+  margin: 15px; /* Space between cards */
+  width: 250px; /* Fixed width for cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  transition: transform 0.3s ease; /* Smooth scaling on hover */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Slightly enlarge card on hover */
+}
+
+.card h2 {
+  margin: 0; /* Remove default margin */
+  font-size: 1.5rem; /* Font size for product name */
+  color: white; /* White text color */
+}
+
+.card p {
+  margin: 5px 0; /* Space between paragraphs */
+  color: white; /* White text color */
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: white; /* White text color for price */
+}
+
+.view_product_btn {
+  background-color: #fff; /* White background for button */
+  color: #fa7930; /* Dark orange text color for button */
+  padding: 10px 15px; /* Padding for button */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+  margin-top: 10px; /* Space above the button */
+}
+
+.view_product_btn:hover {
+  background-color: #f0f0f0; /* Lighter background on hover */
+}

@@ -1,0 +1,75 @@
+.create_product_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #f7f7f7; /* Light Gray Background */
+  min-height: 100vh; /* Full height for better centering */
+}
+
+h1 {
+  margin-bottom: 30px; /* Increased margin for better separation */
+  color: #4a90e2; /* Primary Color */
+}
+
+.form_container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Increased gap for better spacing between elements */
+  width: 100%; /* Full width for the form */
+  max-width: 500px; /* Limit the maximum width for better readability */
+  background-color: white; /* White background for the form */
+  padding: 30px; /* Increased padding for the form */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #333333; /* Dark Gray Text */
+}
+
+.input,
+.textarea,
+.select {
+  padding: 12px; /* Increased padding for better touch targets */
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%; /* Full width for inputs */
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: #4a90e2; /* Highlight border on focus */
+  outline: none; /* Remove default outline */
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.success {
+  color: green;
+  margin-top: 10px;
+}
+
+.green_btn {
+  background-color: #4a90e2; /* Primary Button Color */
+  color: white;
+  padding: 12px 20px; /* Increased padding for better button size */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.green_btn:hover {
+  background-color: #357abd; /* Darker shade on hover */
+}
