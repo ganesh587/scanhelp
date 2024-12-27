@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
   // If tag_id or tag_type does not exist, redirect to products page
   if (!tagId || !tagType) {
-    return <Navigate to="/products" />;
+    return <Navigate to="/app/products" />;
   }
 
   return children; // Render the children if the condition is met

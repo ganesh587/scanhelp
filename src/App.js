@@ -16,7 +16,7 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path='/' exact element={<Main />} />
-        <Route path='/products' exact element={<Products />} />
+        <Route path='/app/products' exact element={<Products />} />
         <Route
           path='/create-product'
           element={

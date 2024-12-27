@@ -18,7 +18,7 @@ const EditProfile = () => {
     // Here you would typically send the data to your backend
     console.log("Profile Updated:", data);
     // Redirect to products page after updating (you can use navigate from react-router)
-    window.location = "/products";
+    window.location = "/app/products";
   };
 
   return (
@@ -66,7 +66,7 @@ const EditProfile = () => {
           <button
             type='button'
             className={styles.cancel_btn}
-            onClick={() => (window.location = "/products")}
+            onClick={() => (window.location = "/app/products")}
           >
             Cancel
           </button>

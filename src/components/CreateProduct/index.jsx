@@ -63,7 +63,7 @@ const CreateProduct = () => {
       localStorage.removeItem("tag_type");
 
       // Redirect to the Products page
-      navigate("/products");
+      navigate("/app/products");
     } catch (error) {
       // Handle errors
       if (error.response) {

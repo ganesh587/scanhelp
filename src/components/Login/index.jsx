@@ -33,7 +33,7 @@ const Login = () => {
         navigate("/create-product");
       } else {
         // Otherwise, redirect to products page
-        navigate("/products");
+        navigate("/app/products");
       }
     } catch (error) {
       // Handle errors
