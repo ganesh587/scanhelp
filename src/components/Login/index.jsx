@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useState,useEffect  } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Importing icons
 import styles from "./styles.module.css";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate
 
   // Handle input changes
   const handleChange = ({ currentTarget: input }) => {
     setLoginData({ ...loginData, [input.name]: input.value });
   };
-
+  useEffect(() => {
+    localStorage.removeItem("token"); // Clear everything from local storage
+  }, []);
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -20,7 +23,18 @@ const Login = () => {
       const url = "http://192.168.1.31:8000/api/token/"; // API endpoint
       const { data: res } = await axios.post(url, loginData); // Send POST request
       localStorage.setItem("token", res.access); // Store the token in local storage
-      window.location = "/products"; // Redirect to the Products page after login
+
+      // Check for tag_id and tag_type in local storage
+      const tagId = localStorage.getItem("tag_id");
+      const tagType = localStorage.getItem("tag_type");
+
+      if (tagId && tagType) {
+        // Redirect to create product page if tag_id and tag_type exist
+        navigate("/create-product");
+      } else {
+        // Otherwise, redirect to products page
+        navigate("/products");
+      }
     } catch (error) {
       // Handle errors
       if (

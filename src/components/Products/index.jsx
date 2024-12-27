@@ -1,79 +1,65 @@
-import React, { useState } from "react";
+// src/components/Products/index.jsx
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import { FaUser, FaPlus } from "react-icons/fa";
-import EditProfileModal from "../EditProfileModal"; // Import the EditProfileModal component
+import { FaUser } from "react-icons/fa";
+import { jwtDecode } from "jwt-decode"; // Correct named import
+import axios from "axios"; // Import axios
+import { useAuth } from "../AuthContext"; // Import the useAuth hook
+import SessionExpiredModal from "../SessionExpiredModal"; // Import the modal
 
 const Products = () => {
-  const [isEditProfileOpen, setEditProfileOpen] = useState(false);
-  const [isCreateProductOpen, setCreateProductOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { isModalOpen, setModalOpen, handleSessionExpired } = useAuth(); // Use the auth context
 
-  // Dummy data for products
-  const products = [
-    {
-      id: 1,
-      name: "Wireless Headphones",
-      description: "High-quality sound with noise cancellation.",
-      price: "$99",
-    },
-    {
-      id: 2,
-      name: "Smart Watch",
-      description: "Track your fitness and stay connected.",
-      price: "$199",
-    },
-    {
-      id: 3,
-      name: "Bluetooth Speaker",
-      description: "Portable speaker with deep bass.",
-      price: "$49",
-    },
-    {
-      id: 4,
-      name: "Gaming Mouse",
-      description: "Ergonomic design with customizable buttons.",
-      price: "$59",
-    },
-    {
-      id: 5,
-      name: "4K Monitor",
-      description: "Stunning visuals with ultra HD resolution.",
-      price: "$299",
-    },
-    {
-      id: 6,
-      name: "Laptop Stand",
-      description: "Adjustable height for better ergonomics.",
-      price: "$29",
-    },
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          handleSessionExpired(); // Handle case where token is not present
+          return;
+        }
 
-  const handleEditProfileSubmit = (e) => {
-    e.preventDefault();
-    // Logic to update the profile
-    setEditProfileOpen(false); // Close the modal after submission
-  };
+        const decodedToken = jwtDecode(token); // Decode the token to get user_id
+        const userId = decodedToken.user_id; // Extract user_id from token
 
-  const handleCreateProductSubmit = (e) => {
-    e.preventDefault();
-    // Logic to create a new product
-    setCreateProductOpen(false); // Close the modal after submission
-  };
+        // Set up the headers with the Authorization token
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`, // Pass the token in the headers
+          },
+        };
+
+        // Make the API call with the headers
+        const response = await axios.get(`http://192.168.1.31:8000/api/products/user/?user_id=${userId}`, config);
+        setProducts(response.data); // Set the products state with the fetched data
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          // If the token is expired or invalid
+          handleSessionExpired(); // Call the session expired handler
+        } else {
+          setError("Error fetching products. Please try again later.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts(); // Call the fetch function
+  }, [handleSessionExpired]); // Include handleSessionExpired in the dependency array
+
+  if (loading) return <p>Loading products...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className={styles.products_container}>
+      {isModalOpen && <SessionExpiredModal onClose={() => setModalOpen(false)} />}
       <div className={styles.header}>
-        <button
-          onClick={() => setEditProfileOpen(true)}
-          className={styles.profile_icon}
-        >
-          <FaUser size={30} />
-        </button>
-        <button
-          onClick={() => setCreateProductOpen(true)}
-          className={styles.create_button}
-        >
-          <FaPlus size={30} />
+        <button className={styles.profile_icon}>
+          <FaUser  size={30} />
         </button>
       </div>
       <h1>ScanNHelp</h1>
@@ -82,25 +68,14 @@ const Products = () => {
           <div key={product.id} className={styles.card}>
             <h2>{product.name}</h2>
             <p>{product.description}</p>
-            <p className={styles.price}>{product.price}</p>
-            <Link
-              to={`/product/${product.id}`}
-              className={styles.view_product_btn}
-            >
+            <p className={styles.price}>Reward Amount: {product.reward_amount}</p>
+            <p>Note: {product.note}</p>
+            <Link to={`/product/${product.id}`} className={styles.view_product_btn}>
               View Product
             </Link>
           </div>
         ))}
       </div>
-
-      {/* Modal for Edit Profile */}
-      <EditProfileModal
-        isOpen={isEditProfileOpen}
-        onClose={() => setEditProfileOpen(false)}
-      />
-
-      {/* Modal for Create Product */}
-      {/* You can keep the existing modal for creating products if needed */}
     </div>
   );
 };

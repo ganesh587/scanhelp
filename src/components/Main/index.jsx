@@ -1,9 +1,12 @@
 import styles from "./styles.module.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Main = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
+    localStorage.removeItem("token"); // Remove the token
+    navigate("/login"); // Redirect to login page
   };
 
   return (
