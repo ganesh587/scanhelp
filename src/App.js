@@ -10,7 +10,7 @@ import Scan from "./components/Scan"; // Import the Scan component
 import ScannedProduct from "./components/ScannedProduct"; // Import the ScannedProduct component
 import ProtectedRoute from "./ProtectedRoute"; // Import the ProtectedRoute component
 import { AuthProvider } from "./components/AuthContext"; // Import the AuthProvider
-
+//a
 function App() {
   return (
     <AuthProvider>
