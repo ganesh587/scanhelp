@@ -5,7 +5,6 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Products from "./components/Products";
 import CreateProduct from "./components/CreateProduct";
-import EditProfile from "./components/EditProfile";
 import Scan from "./components/Scan"; // Import the Scan component
 import ScannedProduct from "./components/ScannedProduct"; // Import the ScannedProduct component
 import Product from "./components/Product"; // Import the Product component
@@ -26,7 +25,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path='/edit-profile' exact element={<EditProfile />} />
         <Route path='/signup' exact element={<Signup />} />
         <Route path='/login' exact element={<Login />} />
         <Route path='/app/scan' exact element={<Scan />} /> {/* Scan route */}
