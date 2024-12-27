@@ -69,3 +69,63 @@
   margin-bottom: 10px; /* Space below the error message */
   font-size: 14px; /* Font size for error messages */
 }
+
+/* styles.module.css */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is on top */
+}
+
+.modal_content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px; /* Set a width for the modal */
+}
+
+.close_button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.switch_container {
+  margin: 10px 0;
+}
+
+/* styles.module.css */
+
+.form_group {
+  margin-bottom: 15px; /* Space between form groups */
+}
+
+.form_group label {
+  display: block; /* Make labels block elements */
+  margin-bottom: 5px; /* Space between label and input */
+  font-weight: bold; /* Make labels bold */
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%; /* Full width for inputs */
+  padding: 8px; /* Padding for inputs */
+  border: 1px solid #ccc; /* Border for inputs */
+  border-radius: 4px; /* Rounded corners */
+}
+
+input[type="checkbox"] {
+  margin-left: 10px; /* Space between checkbox and label */
+}

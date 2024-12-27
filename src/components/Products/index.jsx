@@ -2,16 +2,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import { FaUser } from "react-icons/fa";
+import { FaUser  } from "react-icons/fa";
 import { jwtDecode } from "jwt-decode"; // Correct named import
 import axios from "axios"; // Import axios
 import { useAuth } from "../AuthContext"; // Import the useAuth hook
 import SessionExpiredModal from "../SessionExpiredModal"; // Import the modal
+import EditProfileModal from "../EditProfileModal"; // Import the EditProfileModal
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
   const { isModalOpen, setModalOpen, handleSessionExpired } = useAuth(); // Use the auth context
 
   useEffect(() => {
@@ -54,11 +56,16 @@ const Products = () => {
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>{error}</p>;
 
+  const handleEditProfileClick = () => {
+    setEditModalOpen(true); // Open the edit profile modal
+  };
+
   return (
     <div className={styles.products_container}>
       {isModalOpen && <SessionExpiredModal onClose={() => setModalOpen(false)} />}
+      {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")).user_id} onClose={() => setEditModalOpen(false)} />}
       <div className={styles.header}>
-        <button className={styles.profile_icon}>
+        <button className={styles.profile_icon} onClick={handleEditProfileClick}>
           <FaUser  size={30} />
         </button>
       </div>
@@ -70,7 +77,7 @@ const Products = () => {
             <p>{product.description}</p>
             <p className={styles.price}>Reward Amount: {product.reward_amount}</p>
             <p>Note: {product.note}</p>
-            <Link to={`/product/${product.id}`} className={styles.view_product_btn}>
+            <Link to={`/product/${product.id}`} className ={styles.view_product_btn}>
               View Product
             </Link>
           </div>

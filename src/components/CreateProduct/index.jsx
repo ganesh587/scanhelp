@@ -1,104 +1,124 @@
+// src/components/CreateProduct.js
 import React, { useState } from "react";
-import styles from "./styles.module.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import styles from "./styles.module.css"; // Import your styles
 
 const CreateProduct = () => {
-  const [data, setData] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     description: "",
-    price: "",
-    category: "",
+    display: true, // Default value for display
+    note: "",
+    reward_amount: "",
   });
-
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-    setError(""); // Clear error on input change
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Basic validation
-    if (!data.name || !data.description || !data.price || !data.category) {
-      setError("All fields are required.");
-      return;
-    }
+  // Handle switch change for display
+  const handleSwitchChange = () => {
+    setFormData((prevData) => ({ ...prevData, display: !prevData.display }));
+  };
 
-    // Here you would typically send the data to your backend
-    console.log("Product Created:", data);
-    setSuccess(true); // Set success state
-    // Optionally redirect or show success message
-    setTimeout(() => {
-      window.location = "/products"; // Redirect after 2 seconds
-    }, 2000);
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    try {
+      // Get the token from local storage
+      const token = localStorage.getItem("token");
+      const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decode the token to get user_id
+      const ownerId = decodedToken.user_id; // Extract user_id from the decoded token
+
+      // Get tag_id and tag_type from local storage
+      const tagId = localStorage.getItem("tag_id");
+      const tagType = localStorage.getItem("tag_type");
+
+      // Prepare the data for the POST request
+      const data = {
+        tag_id: tagId, // Include tag_id from local storage
+        tag_type: tagType, // Include tag_type from local storage
+        ...formData,
+        owner: ownerId, // Set the owner to the user_id from the token
+      };
+
+      // Make the POST request
+      const response = await axios.post("http://192.168.1.31:8000/api/products/add/", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Handle the response
+      console.log("Product created:", response.data);
+      
+      // Clear local storage items
+      localStorage.removeItem("tag_id");
+      localStorage.removeItem("tag_type");
+
+      // Redirect to the Products page
+      navigate("/products");
+    } catch (error) {
+      // Handle errors
+      if (error.response) {
+        setError(error.response.data.detail || "Error creating product. Please try again.");
+      } else {
+        setError("Error creating product. Please try again.");
+      }
+    }
   };
 
   return (
     <div className={styles.create_product_container}>
-      <h1>Create New Product</h1>
-      <form className={styles.form_container} onSubmit={handleSubmit}>
-        <label>
-          Product Name
-          <input
-            type='text'
-            name='name'
-            value={data.name}
-            onChange={handleChange}
-            required
-            className={styles.input}
-            placeholder='Enter product name'
-          />
-        </label>
-        <label>
-          Description
-          <textarea
-            name='description'
-            value={data.description}
-            onChange={handleChange}
-            required
-            className={styles.textarea}
-            placeholder='Enter product description'
-          />
-        </label>
-        <label>
-          Price
-          <input
-            type='number'
-            name='price'
-            value={data.price}
-            onChange={handleChange}
-            required
-            className={styles.input}
-            placeholder='Enter product price'
-          />
-        </label>
-        <label>
-          Category
-          <select
-            name='category'
-            value={data.category}
-            onChange={handleChange}
-            required
-            className={styles.select}
-          >
-            <option value=''>Select a category</option>
-            <option value='electronics'>Electronics</option>
-            <option value='clothing'>Clothing</option>
-            <option value='accessories'>Accessories</option>
-            <option value='home'>Home</option>
-          </select>
-        </label>
-        {error && <p className={styles.error}>{error}</p>}{" "}
-        {/* Show error message */}
-        {success && (
-          <p className={styles.success}>Product created successfully!</p>
-        )}{" "}
-        {/* Show success message */}
-        <button type='submit' className={styles.green_btn}>
-          Create Product
-        </button>
+      <h1>Create Product</h1>
+      {error && <div className={styles.error_msg}>{error}</div>}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Product Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        <textarea
+          name="description"
+          placeholder="Product Description"
+          value={formData.description}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="number"
+          name="reward_amount"
+          placeholder="Reward Amount"
+          value={formData.reward_amount}
+          onChange={handleChange}
+          required
+        />
+        <textarea
+          name="note"
+          placeholder="Notes about the product"
+          value={formData.note}
+          onChange={handleChange}
+        />
+        <div className={styles.switch_container}>
+          <label>
+            Display:
+            <input
+              type="checkbox"
+              checked={formData.display}
+              onChange={handleSwitchChange}
+            />
+          </label>
+        </div>
+        <button type="submit">Create Product</button>
       </form>
     </div>
   );
