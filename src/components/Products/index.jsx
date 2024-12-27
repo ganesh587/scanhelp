@@ -8,7 +8,7 @@ import axios from "axios"; // Import axios
 import { useAuth } from "../AuthContext"; // Import the useAuth hook
 import SessionExpiredModal from "../SessionExpiredModal"; // Import the modal
 import EditProfileModal from "../EditProfileModal"; // Import the EditProfileModal
-
+import appconfig from '../../config';
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ const Products = () => {
         };
 
         // Make the API call with the headers
-        const response = await axios.get(`http://192.168.1.31:8000/api/products/user/?user_id=${userId}`, config);
+        const response = await axios.get(`${appconfig.API_URL}/products/user/?user_id=${userId}`, config);
         setProducts(response.data); // Set the products state with the fetched data
       } catch (error) {
         if (error.response && error.response.status === 401) {

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css"; // Import your styles
-
+import config from '../../config';
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -48,7 +48,7 @@ const CreateProduct = () => {
       };
 
       // Make the POST request
-      const response = await axios.post("http://192.168.1.31:8000/api/products/add/", data, {
+      const response = await axios.post(`${config.API_URL}/products/add/`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

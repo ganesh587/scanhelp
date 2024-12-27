@@ -8,14 +8,15 @@ import CreateProduct from "./components/CreateProduct";
 import EditProfile from "./components/EditProfile";
 import Scan from "./components/Scan"; // Import the Scan component
 import ScannedProduct from "./components/ScannedProduct"; // Import the ScannedProduct component
+import Product from "./components/Product"; // Import the Product component
 import ProtectedRoute from "./ProtectedRoute"; // Import the ProtectedRoute component
 import { AuthProvider } from "./components/AuthContext"; // Import the AuthProvider
-//a
+
 function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path='/' exact element={<Main />} />
+        <Route path='/app' exact element={<Main />} />
         <Route path='/app/products' exact element={<Products />} />
         <Route
           path='/create-product'
@@ -30,6 +31,7 @@ function App() {
         <Route path='/login' exact element={<Login />} />
         <Route path='/app/scan' exact element={<Scan />} /> {/* Scan route */}
         <Route path='/scanned-product' exact element={<ScannedProduct />} /> {/* ScannedProduct route */}
+        <Route path='/product/:id' exact element={<Product />} /> {/* Product route */}
       </Routes>
     </AuthProvider>
   );

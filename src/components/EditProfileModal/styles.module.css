@@ -1,4 +1,6 @@
-.modal_overlay {
+/* src/components/EditProfileModal/styles.module.css */
+
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,8 +10,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px); /* Blur effect */
-  overflow: auto; /* Allow scrolling */
+  backdrop-filter: blur(5px); /* Blur effect for the background */
+  z-index: 1000; /* Ensure modal is on top */
 }
 
 .modal_content {
@@ -17,115 +19,79 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 80%; /* Set a wide width for the modal */
-  max-width: 1000px; /* Maximum width */
+  width: 90%; /* Set a wide width for the modal */
+  max-width: 600px; /* Maximum width */
+  max-height: 80vh; /* Maximum height */
+  overflow-y: auto; /* Allow vertical scrolling if content exceeds height */
   display: flex; /* Use flexbox for layout */
   flex-direction: column; /* Stack elements vertically */
 }
 
-.modal_content form {
-  display: flex; /* Use flexbox for form layout */
-  justify-content: space-between; /* Distribute fields left and right */
-  flex-wrap: wrap; /* Allow wrapping of fields */
+h2 {
+  margin-bottom: 20px; /* Space below the heading */
+  color: #333; /* Darker text color */
 }
 
-.modal_content input,
-.modal_content textarea {
-  margin-bottom: 10px; /* Space between input fields */
-  padding: 10px; /* Padding for input fields */
-  border: 1px solid #ccc; /* Border for input fields */
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 20px; /* Space between fields */
+  width: 100%; /* Full width */
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px; /* Space between label and input */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  width: 100%; /* Full width for inputs */
+  padding: 10px; /* Padding for inputs */
+  border: 1px solid #ccc; /* Border for inputs */
   border-radius: 5px; /* Rounded corners */
-  flex: 1; /* Allow inputs to grow */
-  min-width: 300px; /* Minimum width for inputs */
-  max-width: 45%; /* Maximum width for inputs */
+  font-size: 16px; /* Font size */
+}
+
+textarea {
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.switch_container {
+  margin: 10px 0; /* Space around the switch */
+}
+
+button {
+  padding: 10px; /* Padding for buttons */
+  background-color: #3bb19b; /* Button color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+  margin-top: 10px; /* Space above the button */
+}
+
+button:hover {
+  background-color: #319f85; /* Darker shade on hover */
 }
 
 .close_button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
+  background-color: #f44336; /* Red color for close button */
 }
 
-.modal_content button {
-  background-color: #fa7930; /* Button color */
-  color: white; /* Text color */
-  border: none;
-  padding: 10px; /* Padding for buttons */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition */
-}
-
-.modal_content button:hover {
-  background-color: #d76d2b; /* Darker shade on hover */
+.close_button:hover {
+  background-color: #d32f2f; /* Darker shade on hover */
 }
 
 .error_msg {
   color: red; /* Red color for error messages */
   margin-bottom: 10px; /* Space below the error message */
   font-size: 14px; /* Font size for error messages */
-}
-
-/* styles.module.css */
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Ensure modal is on top */
-}
-
-.modal_content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 400px; /* Set a width for the modal */
-}
-
-.close_button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.switch_container {
-  margin: 10px 0;
-}
-
-/* styles.module.css */
-
-.form_group {
-  margin-bottom: 15px; /* Space between form groups */
-}
-
-.form_group label {
-  display: block; /* Make labels block elements */
-  margin-bottom: 5px; /* Space between label and input */
-  font-weight: bold; /* Make labels bold */
-}
-
-input[type="text"],
-input[type="email"] {
-  width: 100%; /* Full width for inputs */
-  padding: 8px; /* Padding for inputs */
-  border: 1px solid #ccc; /* Border for inputs */
-  border-radius: 4px; /* Rounded corners */
-}
-
-input[type="checkbox"] {
-  margin-left: 10px; /* Space between checkbox and label */
 }

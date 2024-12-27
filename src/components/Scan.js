@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./AuthContext"; // Import the useAuth hook
+import config from '../config';
 
 const Scan = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Scan = () => {
       }
 
       try {
-        const response = await axios.post("http://192.168.1.31:8000/api/scan", {
+        const response = await axios.post(`${config.API_URL}/scan`, {
           tag_id: tagId,
           tag_type: tagType,
         });

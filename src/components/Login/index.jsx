@@ -1,9 +1,9 @@
-import { useState,useEffect  } from "react";
+import React,{ useState,useEffect  } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Importing icons
 import styles from "./styles.module.css";
-
+import config from '../../config';
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -20,7 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
     try {
-      const url = "http://192.168.1.31:8000/api/token/"; // API endpoint
+      const url = `${config.API_URL}/token/`; // API endpoint
       const { data: res } = await axios.post(url, loginData); // Send POST request
       localStorage.setItem("token", res.access); // Store the token in local storage
 
