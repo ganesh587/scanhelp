@@ -44,7 +44,7 @@ const CreateProduct = () => {
       // Prepare the data for the POST request
       const data = {
         tag_id: localStorage.getItem("tag_id"), // Include tag_id from local storage
-        tag_type: formData.tag_type, // Use the selected tag_type
+        tag_type: localStorage.getItem("tag_type"), // Use the selected tag_type
         product_name: formData.product_name,
         description: formData.description,
         display: formData.display,
@@ -118,7 +118,7 @@ const CreateProduct = () => {
             />
             <textarea
               name="note"
-              placeholder="Notes about the product"
+              placeholder="Note"
               value={formData.note}
               onChange={handleChange}
             />
