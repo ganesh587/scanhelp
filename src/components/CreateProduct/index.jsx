@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import config from '../../config';
+import { Helmet } from 'react-helmet';
+import Spinner from "../Spinner";
 
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +26,7 @@ const CreateProduct = () => {
     allergies: "",
     physically_disabled: false,
   });
-
+  const [loading, setLoading] = useState(false);
   const tag_type = localStorage.getItem("tag_type");
   const tag_id = localStorage.getItem("tag_id");
   const [error, setError] = useState("");
@@ -64,6 +66,7 @@ const CreateProduct = () => {
     };
 
     try {
+      setLoading(true);
       const response = await axios.post(`${config.API_URL}/products/add/`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -74,16 +77,21 @@ const CreateProduct = () => {
       console.log("Product created:", response.data);
       localStorage.removeItem("tag_id");
       localStorage.removeItem("tag_type");
+      setLoading(false);
       navigate("/app/products");
     } catch (err) {
+      setLoading(false);
       setError(err.response?.data.detail || "Error creating product. Please try again.");
     }
   };
 
   return (
     <div className={styles.create_product_container}>
-      <h1>Create Product</h1>
+          <Helmet>
+        <title>Create Product</title>
+      </Helmet>
       {error && <div className={styles.error_msg}>{error}</div>}
+      {loading && <Spinner />}
       <form onSubmit={handleSubmit}>
         <div className={styles.form_group}>
           <label htmlFor="product_name">Product Name</label>
