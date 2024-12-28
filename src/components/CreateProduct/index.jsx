@@ -118,8 +118,7 @@ const CreateProduct = () => {
           name="description"
           placeholder="Product Description"
           value={formData.description}
-          onChange={handleChange}
-          required
+          onChange={handleChange}    
         />
         
         {/* Conditional rendering for reward_amount and note based on tag_type */}
@@ -131,7 +130,6 @@ const CreateProduct = () => {
               placeholder="Reward Amount"
               value={formData.reward_amount}
               onChange={handleChange}
-              required
             />
             <textarea
               name="note"
@@ -218,7 +216,6 @@ const CreateProduct = () => {
           placeholder="Contact Name"
           value={formData.contact_name}
           onChange={handleChange}
-          required
         />
         <input
           type="text"
@@ -226,7 +223,6 @@ const CreateProduct = () => {
           placeholder="Contact Phone"
           value={formData.contact_phone}
           onChange={handleChange}
-          required
         />
         <input
           type="text"
