@@ -119,6 +119,7 @@ h1 {
 
 .view_product_btn:hover {
   border: 2px solid #F0BB78;
+  background-color: #131010;
   color: #F0BB78;
 }
 
