@@ -30,7 +30,7 @@ const Login = () => {
 
       if (tagId && tagType) {
         // Redirect to create product page if tag_id and tag_type exist
-        navigate("/create-product");
+        navigate("/app/create-product");
       } else {
         // Otherwise, redirect to products page
         navigate("/app/products");

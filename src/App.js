@@ -18,7 +18,7 @@ function App() {
         <Route path='/app' exact element={<Main />} />
         <Route path='/app/products' exact element={<Products />} />
         <Route
-          path='/create-product'
+          path='/app/create-product'
           element={
             <ProtectedRoute>
               <CreateProduct />

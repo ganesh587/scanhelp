@@ -10,11 +10,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; /* Position relative for overlay */
+  
+  /* Set the gradient as the first background layer */
   background: linear-gradient(
     135deg,
-    #fa7930,
-    #d76d2b
-  ); /* Gradient from #fa7930 to a darker orange */
+    rgba(250, 121, 48, 0.8), /* Gradient color with transparency */
+    rgba(215, 109, 43, 0.8) /* Gradient color with transparency */
+  ), 
+  url('https://files.oaiusercontent.com/file-7YjYmgjEh1HnfxrHbFHRhQ?se=2024-12-28T12%3A43%3A16Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D5eb72096-be0e-4e0b-8f20-7f4bacaf79fb.webp&sig=Jxk29nfp1sG/KUYulwVRnvRk/o8JjYVIKA0cwnQVKlo%3D'); /* Image as the second background layer */
+  
+  background-size: cover; /* Cover the entire area */
+  background-position: center; /* Center the image */
+  
   color: #f7f4f2ff; /* Set the color of the title to #f7f4f2ff */
   font-size: 48px; /* Larger font size for the title */
 }
@@ -48,6 +56,7 @@
 .input {
   width: 100%; /* Full width for input fields */
   padding: 10px; /* Padding for input fields */
+  margin-left: 10px;
   border: 1px solid #ccc; /* Border for input fields */
   border-radius: 5px; /* Rounded corners */
   transition: border-color 0.3s; /* Smooth transition for border color */
@@ -65,18 +74,30 @@
   ); /* Gradient for button */
   color: white; /* White text */
   border: none;
-  padding: 10px 20px; /* Adjusted padding for smaller button */
+  padding: 8px 16px; /* Smaller padding for a compact button */
+  border-radius: 20px; /* Rounded corners for a pill shape */
+  font-size: 14px; /* Smaller font size */
+  font-weight: bold; /* Bold text */
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition */
-  font-size: 16px; /* Adjusted font size */
+  margin-left: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 .green_btn:hover {
   background: linear-gradient(
     135deg,
-    #388e3c,
-    #4caf50
-  ); /* Darker shade on hover */
+    #4caf50,
+    #388e3c
+  ); /* Gradient for button */
+
+  transform: translateY(-2px); /* Lift effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.green_btn:active {
+  transform: translateY(1px); /* Pressed effect */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Reset shadow */
 }
 
 .forgot_password {

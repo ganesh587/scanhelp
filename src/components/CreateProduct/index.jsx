@@ -4,13 +4,19 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css"; // Import your styles
 import config from '../../config';
+
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    product_name: "",
     description: "",
     display: true, // Default value for display
+    contact_name: "",
+    contact_phone: "",
+    contact_alternate_number: "",
+    contact_address: "",
     note: "",
     reward_amount: "",
+    tag_type: 1, // Default tag_type
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -35,15 +41,19 @@ const CreateProduct = () => {
       const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decode the token to get user_id
       const ownerId = decodedToken.user_id; // Extract user_id from the decoded token
 
-      // Get tag_id and tag_type from local storage
-      const tagId = localStorage.getItem("tag_id");
-      const tagType = localStorage.getItem("tag_type");
-
       // Prepare the data for the POST request
       const data = {
-        tag_id: tagId, // Include tag_id from local storage
-        tag_type: tagType, // Include tag_type from local storage
-        ...formData,
+        tag_id: localStorage.getItem("tag_id"), // Include tag_id from local storage
+        tag_type: formData.tag_type, // Use the selected tag_type
+        product_name: formData.product_name,
+        description: formData.description,
+        display: formData.display,
+        contact_name: formData.contact_name,
+        contact_phone: formData.contact_phone,
+        contact_alternate_number: formData.contact_alternate_number || null,
+        contact_address: formData.contact_address || null,
+        note: formData.tag_type === 1 ? formData.note : null, // Include note only for tag_type 1
+        reward_amount: formData.tag_type === 1 ? formData.reward_amount : null, // Include reward_amount only for tag_type 1
         owner: ownerId, // Set the owner to the user_id from the token
       };
 
@@ -81,9 +91,9 @@ const CreateProduct = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="name"
+          name="product_name"
           placeholder="Product Name"
-          value={formData.name}
+          value={formData.product_name}
           onChange={handleChange}
           required
         />
@@ -94,30 +104,70 @@ const CreateProduct = () => {
           onChange={handleChange}
           required
         />
-        <input
-          type="number"
-          name="reward_amount"
-          placeholder="Reward Amount"
-          value={formData.reward_amount}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          name="note"
-          placeholder="Notes about the product"
-          value={formData.note}
-          onChange={handleChange}
-        />
+        
+        {/* Conditional rendering for reward_amount and note based on tag_type */}
+        {formData.tag_type === 1 && (
+          <>
+            <input
+              type="number"
+              name="reward_amount"
+              placeholder="Reward Amount"
+              value={formData.reward_amount}
+              onChange={handleChange}
+              required
+            />
+            <textarea
+              name="note"
+              placeholder="Notes about the product"
+              value={formData.note}
+              onChange={handleChange}
+            />
+          </>
+        )}
+
         <div className={styles.switch_container}>
           <label>
             Display:
             <input
-              type="checkbox"
+              type ="checkbox"
               checked={formData.display}
               onChange={handleSwitchChange}
             />
           </label>
         </div>
+
+        {/* Common fields for both tag types */}
+        <input
+          type="text"
+          name="contact_name"
+          placeholder="Contact Name"
+          value={formData.contact_name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="contact_phone"
+          placeholder="Contact Phone"
+          value={formData.contact_phone}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="contact_alternate_number"
+          placeholder="Contact Alternate Number"
+          value={formData.contact_alternate_number}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="contact_address"
+          placeholder="Contact Address"
+          value={formData.contact_address}
+          onChange={handleChange}
+        />
+
         <button type="submit">Create Product</button>
       </form>
     </div>

@@ -9,6 +9,7 @@ import { useAuth } from "../AuthContext"; // Import the useAuth hook
 import SessionExpiredModal from "../SessionExpiredModal"; // Import the modal
 import EditProfileModal from "../EditProfileModal"; // Import the EditProfileModal
 import appconfig from '../../config';
+
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -73,13 +74,11 @@ const Products = () => {
       <div className={styles.cards_container}>
         {products.map((product) => (
           <div key={product.id} className={styles.card}>
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-            <p className={styles.price}>Reward Amount: {product.reward_amount}</p>
-            <p>Note: {product.note}</p>
-            <Link to={`/product/${product.id}`} className ={styles.view_product_btn}>
+            <h2>{product.product_name}</h2> {/* Display product name */}
+            <p>{product.description}</p> {/* Display product description */}
+            <Link to={`/product/${product.id}`} className={styles.view_product_btn}>
               View Product
-            </Link>
+            </Link> {/* Link to view product details */}
           </div>
         ))}
       </div>

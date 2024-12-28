@@ -12,8 +12,8 @@ const Scan = () => {
 
   // Extract tag_id and tag_type from the query parameters
   const queryParams = new URLSearchParams(location.search);
-  const tagId = queryParams.get("tag_id");
-  const tagType = queryParams.get("tag_type");
+  const tagId = queryParams.get("t_id");
+  const tagType = queryParams.get("t_t");
 
   useEffect(() => {
     const scanProduct = async () => {
@@ -23,7 +23,7 @@ const Scan = () => {
         // If logged in, redirect to create-product page with tag_id and tag_type
         localStorage.setItem("tag_id", tagId);
         localStorage.setItem("tag_type", tagType);
-        navigate("/create-product");
+        navigate("/app/create-product");
         return; // Exit early since we are redirecting
       }
 
