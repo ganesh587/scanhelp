@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-
+import { Helmet } from 'react-helmet';
 const Main = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -11,6 +11,9 @@ const Main = () => {
 
   return (
     <div className={styles.main_container}>
+         <Helmet>
+        <title>Home</title>
+      </Helmet>
         <iframe
         src="/main.html"  // The path to your HTML file
         title="Embedded HTML Page"
