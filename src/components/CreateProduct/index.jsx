@@ -18,6 +18,8 @@ const CreateProduct = () => {
     reward_amount: "",
     tag_type: 1, // Default tag_type
   });
+  const tag_type = localStorage.getItem("tag_type");
+const tag_id = localStorage.getItem("tag_id")
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -43,8 +45,8 @@ const CreateProduct = () => {
 
       // Prepare the data for the POST request
       const data = {
-        tag_id: localStorage.getItem("tag_id"), // Include tag_id from local storage
-        tag_type: localStorage.getItem("tag_type"), // Use the selected tag_type
+        tag_id: tag_id, // Include tag_id from local storage
+        tag_type: tag_type, // Use the selected tag_type
         product_name: formData.product_name,
         description: formData.description,
         display: formData.display,
@@ -106,7 +108,7 @@ const CreateProduct = () => {
         />
         
         {/* Conditional rendering for reward_amount and note based on tag_type */}
-        {formData.tag_type === 1 && (
+        {tag_type === 1 && (
           <>
             <input
               type="number"
