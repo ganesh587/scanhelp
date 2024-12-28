@@ -60,7 +60,7 @@ const EditProfileModal = ({ userId, onClose }) => {
         {error && <div className={styles.error_msg}>{error}</div>}
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.form_group}>
-            <h2>Email</h2>
+            <h3>Email</h3>
             <input
               type="email"
               name="email"
@@ -72,7 +72,7 @@ const EditProfileModal = ({ userId, onClose }) => {
             />
           </div>
           <div className={styles.form_group}>
-            <h2>Name</h2>
+            <h3>Name</h3>
             <input
               type="text"
               name="name"
@@ -84,7 +84,7 @@ const EditProfileModal = ({ userId, onClose }) => {
             />
           </div>
           <div className={styles.form_group}>
-            <h2>Phone</h2>
+            <h3>Phone</h3>
             <input
               type="text"
               name="phone"
@@ -95,7 +95,7 @@ const EditProfileModal = ({ userId, onClose }) => {
             />
           </div>
           <div className={styles.form_group}>
-            <h2>Alternate Number</h2>
+            <h3>Alternate Number</h3>
             <input
               type="text"
               name="alternate_number"
@@ -106,7 +106,7 @@ const EditProfileModal = ({ userId, onClose }) => {
             />
           </div>
           <div className={styles.form_group}>
-            <h2>Address</h2>
+            <h3>Address</h3>
             <input
               type="text"
               name="address"
