@@ -1,62 +1,141 @@
-/* src/components/Product/styles.module.css */
+/* Modal */
+.modal {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.product_container {
-    max-width: 600px; /* Limit the width of the product container */
-    margin: 20px auto; /* Center the container */
-    padding: 20px; /* Add padding */
-    border: 1px solid #ccc; /* Light border */
-    border-radius: 8px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background color */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-  
-  h1 {
-    text-align: center; /* Center the heading */
-    color: #333; /* Darker text color */
-  }
-  
-  h2 {
-    color: #3bb19b; /* Color for product name */
-  }
-  
-  form {
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack elements vertically */
-    gap: 15px; /* Space between form elements */
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  textarea {
-    padding: 10px; /* Padding for inputs */
-    border: 1px solid #ccc; /* Border for inputs */
-    border-radius: 4px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    width: 100%; /* Full width */
-  }
-  
-  textarea {
-    resize: vertical; /* Allow vertical resizing */
-  }
-  
-  button {
-    padding: 10px; /* Padding for buttons */
-    background-color: #3bb19b; /* Button color */
-    color: white; /* Text color */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition */
-  }
-  
-  button:hover {
-    background-color: #319f85; /* Darker shade on hover */
-  }
-  
-  button[type="submit"] {
-    background-color: #fa7930; /* Different color for submit button */
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #d76d2b; /* Darker shade on hover */
-  }
+/* Modal Content */
+.modal_content {
+  background: #FFF0DC;
+  padding: 30px;
+  border-radius: 4px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Scrollbar Styling */
+.modal_content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal_content::-webkit-scrollbar-track {
+  background: #FFF0DC;
+  border-radius: 12px;
+}
+
+.modal_content::-webkit-scrollbar-thumb {
+  background: #F0BB78;
+  border-radius: 12px;
+}
+
+.modal_content::-webkit-scrollbar-thumb:hover {
+  background: #543A14;
+}
+
+/* Header */
+h2 {
+  text-align: center;
+  color: #543A14;
+  margin-bottom: 20px;
+}
+
+/* Form */
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+/* Form Group */
+.form_group {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Label */
+label {
+  font-weight: bold;
+  color: #543A14;
+}
+
+/* Input Styling */
+input {
+  padding: 12px;
+  border: 1px solid #543A14;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #F0BB78;
+  outline: none;
+}
+
+/* Button Group */
+.button_group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Submit Button */
+.submit_button {
+  flex: 1;
+  padding: 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #543A14;
+  color: #FFF0DC;
+}
+
+.submit_button:hover {
+  background: #131010;
+  transform: translateY(-2px);
+}
+
+/* Close Button */
+.close_button {
+  flex: 1;
+  padding: 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #F0BB78;
+  color: #131010;
+}
+
+.close_button:hover {
+  background: #543A14;
+  transform: translateY(-2px);
+}
+
+/* Error Message */
+.error_msg {
+  color: #131010;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Checkbox Group */
+.checkbox_group {
+  margin-top: 10px;
+}

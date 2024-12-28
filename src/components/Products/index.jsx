@@ -2,48 +2,48 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import { FaUser  } from "react-icons/fa";
-import { jwtDecode } from "jwt-decode"; // Correct named import
-import axios from "axios"; // Import axios
-import { useAuth } from "../AuthContext"; // Import the useAuth hook
-import SessionExpiredModal from "../SessionExpiredModal"; // Import the modal
-import EditProfileModal from "../EditProfileModal"; // Import the EditProfileModal
+import { FaUser } from "react-icons/fa";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+import { useAuth } from "../AuthContext";
+import SessionExpiredModal from "../SessionExpiredModal";
+import EditProfileModal from "../EditProfileModal";
 import appconfig from '../../config';
-import Spinner from "../Spinner"; // Import the Spinner component
+import Spinner from "../Spinner";
+import { Helmet } from 'react-helmet';
+import ProductModal from "../Product"; // Import ProductModal
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
-  const { isModalOpen, setModalOpen, handleSessionExpired } = useAuth(); // Use the auth context
+  const [selectedProduct, setSelectedProduct] = useState(null); // State for selected product
+  const { isModalOpen, setModalOpen, handleSessionExpired } = useAuth(); 
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          handleSessionExpired(); // Handle case where token is not present
+          handleSessionExpired(); 
           return;
         }
 
-        const decodedToken = jwtDecode(token); // Decode the token to get user_id
-        const userId = decodedToken.user_id; // Extract user_id from token
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.user_id;
 
-        // Set up the headers with the Authorization token
         const config = {
           headers: {
-            Authorization: `Bearer ${token}`, // Pass the token in the headers
+            Authorization: `Bearer ${token}`,
           },
         };
 
-        // Make the API call with the headers
         const response = await axios.get(`${appconfig.API_URL}/products/user/?user_id=${userId}`, config);
-        setProducts(response.data); // Set the products state with the fetched data
+        setProducts(response.data); 
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          // If the token is expired or invalid
-          handleSessionExpired(); // Call the session expired handler
+          handleSessionExpired();
         } else {
           setError("Error fetching products. Please try again later.");
         }
@@ -52,48 +52,52 @@ const Products = () => {
       }
     };
 
-    fetchProducts(); // Call the fetch function
+    fetchProducts();
 
-    // Check for token removal
     const checkToken = () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        handleSessionExpired(); // Show session expired modal if token is removed
+        handleSessionExpired(); 
       }
     };
 
-    // Set an interval to check for token removal every second
     const intervalId = setInterval(checkToken, 1000);
-
-    // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, [handleSessionExpired]); // Include handleSessionExpired in the dependency array
+  }, [handleSessionExpired]);
 
-  if (loading) return <Spinner />; // Show spinner while loading
+  if (loading) return <Spinner />;
   if (error) return <p>{error}</p>;
 
   const handleEditProfileClick = () => {
-    setEditModalOpen(true); // Open the edit profile modal
+    setEditModalOpen(true); 
+  };
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product); // Set the selected product when clicked
   };
 
   return (
     <div className={styles.products_container}>
+      <Helmet>
+        <title>Products</title>
+      </Helmet>
       {isModalOpen && <SessionExpiredModal onClose={() => setModalOpen(false)} />}
-      {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")). user_id} onClose={() => setEditModalOpen(false)} />}
+      {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")).user_id} onClose={() => setEditModalOpen(false)} />}
+      {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />} {/* Pass the selected product to the modal */}
       <div className={styles.header}>
-        <button className={styles.profile_icon} onClick={handleEditProfileClick}>
-          <FaUser  size={30} />
-        </button>
+        <div className={styles.header_content}>
+          <FaUser className={styles.profile_icon} size={30} onClick={handleEditProfileClick} />
+          <h1 className={styles.title}>ScanNHelp</h1>
+        </div>
       </div>
-      <h1>ScanNHelp</h1>
       <div className={styles.cards_container}>
         {products.map((product) => (
-          <div key={product.id} className={styles.card}>
-            <h2>{product.product_name}</h2> {/* Display product name */}
-            <p>{product.description}</p> {/* Display product description */}
-            <Link to={`/product/${product.id}`} className={styles.view_product_btn}>
+          <div key={product.id} className={styles.card} onClick={() => handleProductClick(product)}>
+            <h2>{product.product_name}</h2> 
+            <p>{product.description}</p> 
+            <button className={styles.view_product_btn}>
               View Product
-            </Link> {/* Link to view product details */}
+            </button>
           </div>
         ))}
       </div>

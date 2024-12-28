@@ -6,7 +6,7 @@ import { FaEnvelope, FaLock } from "react-icons/fa"; // Importing icons
 import styles from "./styles.module.css";
 import config from '../../config';
 import Spinner from "../Spinner"; // Import the Spinner component
-
+import { Helmet } from 'react-helmet';
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -60,6 +60,9 @@ const Login = () => {
 
   return (
     <div className={styles.login_container}>
+        <Helmet>
+        <title>Login</title> {/* Set the tab name here */}
+      </Helmet>
       {loading && <Spinner />} {/* Show spinner while loading */}
       <div className={styles.left}>
         <h1>ScanNHelp</h1> {/* Showcase ScanNHelp on the left */}

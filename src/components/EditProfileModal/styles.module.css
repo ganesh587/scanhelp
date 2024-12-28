@@ -1,71 +1,122 @@
-/* src/components/EditProfileModal/styles.module.css */
-
 .modal {
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px); /* Optional: adds a blur effect to the background */
 }
 
 .modal_content {
-  background: white;
+  background: #FFF0DC;
   padding: 30px;
-  border-radius: 8px;
-  width: 500px; /* Set a fixed width for the modal */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  height: 500px;
+  border-radius: 4px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-height: 85vh;
   overflow-y: auto;
 }
 
-.form {
-  display: flex;
-  flex-direction: column; /* Arrange items in a single column */
+.modal_content::-webkit-scrollbar {
+  width: 8px;
 }
 
-h3 {
-  margin: 0 0 5px; /* Space below the heading */
+.modal_content::-webkit-scrollbar-track {
+  background: #FFF0DC;
+  border-radius: 12px;
+}
+
+.modal_content::-webkit-scrollbar-thumb {
+  background: #F0BB78;
+  border-radius: 12px;
+}
+
+.modal_content::-webkit-scrollbar-thumb:hover {
+  background: #543A14;
+}
+
+h2 {
+  text-align: center;
+  color: #543A14;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.form_group {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  align-items: center;
+}
+
+label {
+  font-weight: bold;
+  color: #543A14;
 }
 
 input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 80%; /* Full width for inputs */
+  padding: 12px;
+  border: 1px solid #543A14;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #F0BB78;
+  outline: none;
+}
+
+.button_group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.submit_button,
+.close_button {
+  flex: 1;
+  padding: 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .submit_button {
-  background-color: #4CAF50; /* Green background */
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  background: #543A14;
+  color: #FFF0DC;
 }
 
 .submit_button:hover {
-  background-color: #45a049; /* Darker green on hover */
+  background: #131010;
+  transform: translateY(-2px);
 }
 
 .close_button {
-  background-color: #f44336; /* Red background */
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  background: #F0BB78;
+  color: #131010;
 }
 
 .close_button:hover {
-  background-color: #e53935; /* Darker red on hover */
+  background: #543A14;
+  transform: translateY(-2px);
 }
 
 .error_msg {
-  color: red;
-  margin-bottom: 15px; /* Space below error message */
+  color: #131010;
+  font-weight: bold;
+  text-align: center;
 }

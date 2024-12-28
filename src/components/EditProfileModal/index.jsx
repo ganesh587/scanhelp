@@ -1,8 +1,9 @@
-// src/components/EditProfileModal.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "./styles.module.css"; // Import your styles
+import styles from "./styles.module.css";
 import config from '../../config';
+import Spinner from "../Spinner";
+import { Helmet } from 'react-helmet';
 
 const EditProfileModal = ({ userId, onClose }) => {
   const [formData, setFormData] = useState({
@@ -10,12 +11,14 @@ const EditProfileModal = ({ userId, onClose }) => {
     name: "",
     phone: "",
     alternate_number: "",
-    address: ""
+    address: "",
   });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
+      setLoading(true);
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(`${config.API_URL}/users/${userId}/`, {
@@ -23,13 +26,15 @@ const EditProfileModal = ({ userId, onClose }) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setFormData(response.data); // Set the form data with the fetched user details
+        setFormData(response.data);
       } catch (error) {
         setError("Error fetching user details. Please try again.");
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchUserDetails(); // Fetch user details when the modal opens
+    fetchUserDetails();
   }, [userId]);
 
   const handleChange = (e) => {
@@ -38,7 +43,8 @@ const EditProfileModal = ({ userId, onClose }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
+    setLoading(true);
     try {
       const token = localStorage.getItem("token");
       await axios.put(`${config.API_URL}/users/${userId}/`, formData, {
@@ -47,79 +53,50 @@ const EditProfileModal = ({ userId, onClose }) => {
           "Content-Type": "application/json",
         },
       });
-      onClose(); // Close the modal after successful update
+      onClose();
     } catch (error) {
       setError("Error updating user details. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className={styles.modal}>
+      <Helmet>
+        <title>Edit Profile</title>
+      </Helmet>
       <div className={styles.modal_content}>
         <h2>Edit Profile</h2>
+        {loading && <Spinner />}
         {error && <div className={styles.error_msg}>{error}</div>}
         <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.form_group}>
-            <h3>Email</h3>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+          {[
+            { label: "Email", type: "email", name: "email" },
+            { label: "Name", type: "text", name: "name" },
+            { label: "Phone", type: "text", name: "phone" },
+            { label: "Alternate Number", type: "text", name: "alternate_number" },
+            { label: "Address", type: "text", name: "address" },
+          ].map(({ label, type, name }) => (
+            <div className={styles.form_group} key={name}>
+              <label htmlFor={name} className={styles.label}>{label}</label>
+              <input
+                type={type}
+                name={name}
+                id={name}
+                placeholder={`Enter your ${label.toLowerCase()}`}
+                value={formData[name]}
+                onChange={handleChange}
+                className={styles.input}
+                required
+              />
+            </div>
+          ))}
+          <div className={styles.button_group}>
+            <button type="submit" className={styles.submit_button}>Save</button>
+            <button type="button" onClick={onClose} className={styles.close_button}>Cancel</button>
           </div>
-          <div className={styles.form_group}>
-            <h3>Name</h3>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter your name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.form_group}>
-            <h3>Phone</h3>
-            <input
-              type="text"
-              name="phone"
-              id="phone"
-              placeholder="Enter your phone number"
-              value={formData.phone}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.form_group}>
-            <h3>Alternate Number</h3>
-            <input
-              type="text"
-              name="alternate_number"
-              id="alternate_number"
-              placeholder="Enter alternate number"
-              value={formData.alternate_number}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.form_group}>
-            <h3>Address</h3>
-            <input
-              type="text"
-              name="address"
-              id="address"
-              placeholder="Enter your address"
-              value={formData.address}
-              onChange={handleChange}
-            />
-          </div>
-        
-          <button type="submit" className={styles.submit_button}>Update Profile</button>
         </form>
-        <button onClick={onClose} className={styles.close_button}>Close</button>
       </div>
     </div>
   );
