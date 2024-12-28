@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import appconfig from '../../config';
-import styles from "./styles.module.css"; // Import your styles
+import styles from "./styles.module.css";
 import { Helmet } from 'react-helmet';
+import Spinner from "../Spinner";
 const Product = ({ product, onClose }) => {
   const [formData, setFormData] = useState({ ...product });
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +12,8 @@ const Product = ({ product, onClose }) => {
   useEffect(() => {
     setFormData({ ...product });
   }, [product]);
+
+  if (isLoading) return <Spinner />;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -245,7 +248,7 @@ const Product = ({ product, onClose }) => {
 
           <div className={styles.button_group}>
             <button type="submit" className={styles.submit_button} disabled={isLoading}>
-              {isLoading ? "Saving..." : "Save"}
+              Save
             </button>
             <button type="button" className={styles.close_button} onClick={onClose}>
               Cancel
