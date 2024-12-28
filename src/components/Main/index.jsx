@@ -11,12 +11,13 @@ const Main = () => {
 
   return (
     <div className={styles.main_container}>
-      <nav className={styles.navbar}>
-        <h1>fakebook</h1>
-        <button className={styles.white_btn} onClick={handleLogout}>
-          Logout
-        </button>
-      </nav>
+        <iframe
+        src="/main.html"  // The path to your HTML file
+        title="Embedded HTML Page"
+        width="100%"  // Adjust as needed
+        height="600px"  // Adjust as needed
+        frameBorder="0"
+      />
     </div>
   );
 };
