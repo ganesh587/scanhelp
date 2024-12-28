@@ -6,8 +6,7 @@ import styles from "./styles.module.css"; // Import your styles
 const ScannedProduct = () => {
   const location = useLocation();
   const { product_information, contact_information, reward_information, medical_details } = location.state; // Get product data from location state
-  const tag_type = localStorage.getItem("tag_type");
-
+const tag_type = product_information.tag_type;
   return (
     <div className={styles.scanned_product_container}>
       <h1>Scanned Product Details</h1>
