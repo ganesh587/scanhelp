@@ -1,24 +1,31 @@
-import React,{ useState,useEffect  } from "react";
+// src/components/Login/index.jsx
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Importing icons
 import styles from "./styles.module.css";
 import config from '../../config';
+import Spinner from "../Spinner"; // Import the Spinner component
+
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // State to manage loading
   const navigate = useNavigate(); // Initialize useNavigate
 
   // Handle input changes
   const handleChange = ({ currentTarget: input }) => {
     setLoginData({ ...loginData, [input.name]: input.value });
   };
+
   useEffect(() => {
     localStorage.removeItem("token"); // Clear everything from local storage
   }, []);
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
+    setLoading(true); // Set loading to true when starting the request
     try {
       const url = `${config.API_URL}/token/`; // API endpoint
       const { data: res } = await axios.post(url, loginData); // Send POST request
@@ -46,11 +53,14 @@ const Login = () => {
           error.response.data.detail || "Login failed. Please try again."
         );
       }
+    } finally {
+      setLoading(false); // Set loading to false after the request is complete
     }
   };
 
   return (
     <div className={styles.login_container}>
+      {loading && <Spinner />} {/* Show spinner while loading */}
       <div className={styles.left}>
         <h1>ScanNHelp</h1> {/* Showcase ScanNHelp on the left */}
       </div>

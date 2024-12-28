@@ -9,6 +9,7 @@ import { useAuth } from "../AuthContext"; // Import the useAuth hook
 import SessionExpiredModal from "../SessionExpiredModal"; // Import the modal
 import EditProfileModal from "../EditProfileModal"; // Import the EditProfileModal
 import appconfig from '../../config';
+import Spinner from "../Spinner"; // Import the Spinner component
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -52,9 +53,23 @@ const Products = () => {
     };
 
     fetchProducts(); // Call the fetch function
+
+    // Check for token removal
+    const checkToken = () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        handleSessionExpired(); // Show session expired modal if token is removed
+      }
+    };
+
+    // Set an interval to check for token removal every second
+    const intervalId = setInterval(checkToken, 1000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, [handleSessionExpired]); // Include handleSessionExpired in the dependency array
 
-  if (loading) return <p>Loading products...</p>;
+  if (loading) return <Spinner />; // Show spinner while loading
   if (error) return <p>{error}</p>;
 
   const handleEditProfileClick = () => {
@@ -64,7 +79,7 @@ const Products = () => {
   return (
     <div className={styles.products_container}>
       {isModalOpen && <SessionExpiredModal onClose={() => setModalOpen(false)} />}
-      {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")).user_id} onClose={() => setEditModalOpen(false)} />}
+      {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")). user_id} onClose={() => setEditModalOpen(false)} />}
       <div className={styles.header}>
         <button className={styles.profile_icon} onClick={handleEditProfileClick}>
           <FaUser  size={30} />
