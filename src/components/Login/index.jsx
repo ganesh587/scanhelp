@@ -1,49 +1,43 @@
-// src/components/Login/index.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
-import { FaEnvelope, FaLock } from "react-icons/fa"; // Importing icons
+import { Link, useNavigate } from "react-router-dom";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 import styles from "./styles.module.css";
 import config from '../../config';
-import Spinner from "../Spinner"; // Import the Spinner component
+import Spinner from "../Spinner";
 import { Helmet } from 'react-helmet';
+
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // State to manage loading
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  // Handle input changes
   const handleChange = ({ currentTarget: input }) => {
     setLoginData({ ...loginData, [input.name]: input.value });
   };
 
   useEffect(() => {
-    localStorage.removeItem("token"); // Clear everything from local storage
+    localStorage.removeItem("token");
   }, []);
 
-  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    setLoading(true); // Set loading to true when starting the request
+    e.preventDefault();
+    setLoading(true);
     try {
-      const url = `${config.API_URL}/token/`; // API endpoint
-      const { data: res } = await axios.post(url, loginData); // Send POST request
-      localStorage.setItem("token", res.access); // Store the token in local storage
+      const url = `${config.API_URL}/token/`;
+      const { data: res } = await axios.post(url, loginData);
+      localStorage.setItem("token", res.access);
 
-      // Check for tag_id and tag_type in local storage
       const tagId = localStorage.getItem("tag_id");
       const tagType = localStorage.getItem("tag_type");
 
       if (tagId && tagType) {
-        // Redirect to create product page if tag_id and tag_type exist
         navigate("/app/create-product");
       } else {
-        // Otherwise, redirect to products page
         navigate("/app/products");
       }
     } catch (error) {
-      // Handle errors
       if (
         error.response &&
         error.response.status >= 400 &&
@@ -54,18 +48,18 @@ const Login = () => {
         );
       }
     } finally {
-      setLoading(false); // Set loading to false after the request is complete
+      setLoading(false);
     }
   };
 
   return (
     <div className={styles.login_container}>
-        <Helmet>
-        <title>Login</title> {/* Set the tab name here */}
+      <Helmet>
+        <title>Login</title>
       </Helmet>
-      {loading && <Spinner />} {/* Show spinner while loading */}
+      {loading && <Spinner />}
       <div className={styles.left}>
-        <h1>ScanNHelp</h1> {/* Showcase ScanNHelp on the left */}
+        <h1>ScanNHelp</h1>
       </div>
       <div className={styles.right}>
         <form className={styles.form_container} onSubmit={handleSubmit}>

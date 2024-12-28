@@ -1,64 +1,63 @@
-/* src/components/Products/styles.module.css */
 .products_container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  background-color: #FFF0DC; /* Light peach background */
-  min-height: 100vh; /* Full height for better centering */
-  color: #131010; /* Dark color for text */
-  position: relative; /* Position relative for pseudo-elements */
-  overflow: hidden; /* Hide overflow for pseudo-elements */
+  background-color: #FFF0DC;
+  min-height: 100vh;
+  color: #131010;
+  position: relative;
+  overflow: hidden;
 }
 
 .header {
   display: flex;
-  justify-content: center; /* Center the header content */
-  align-items: center; /* Align items vertically centered */
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: 1200px; /* Limit header width */
-  margin-bottom: 20px; /* Space below header */
-  position: relative; /* Ensure header is above the background */
+  max-width: 1200px;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .header_content {
-  display: flex; /* Use flexbox for header content */
-  align-items: center; /* Center items vertically */
-  position: absolute; /* Position the content absolutely */
-  left: 0; /* Align to the left */
-  right: 0; /* Align to the right */
-  justify-content: center; /* Center the title */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  justify-content: center;
 }
 
 .title {
-  flex-grow: 1; /* Allow title to take up remaining space */
-  text-align: center; /* Center the title */
-  margin: 0; /* Remove default margin */
-  color: #543A14; /* Dark brown color for the title */
-  font-size: 2.5rem; /* Larger font size for the title */
+  flex-grow: 1;
+  text-align: center;
+  margin: 0;
+  color: #543A14;
+  font-size: 2.5rem;
 }
 
 .profile_icon {
-  color: #4DA1A9; /* Teal color for the icon */
-  margin-right: 10px; /* Space between icon and text */
-  transition: color 0.3s ease; /* Smooth color transition */
+  color: #4DA1A9;
+  margin-right: 10px;
+  transition: color 0.3s ease;
   float: left;
 }
 
 .create_button {
-  color: #F0BB78; /* Light brown color for icons */
-  transition: color 0.3s ease; /* Smooth color transition */
+  color: #F0BB78;
+  transition: color 0.3s ease;
 }
 
 .profile_icon:hover,
 .create_button:hover {
-  color: #543A14; /* Darker brown on hover */
+  color: #543A14;
 }
 
 h1 {
-  margin-bottom: 30px; /* Space below the title */
-  color: #543A14; /* Dark brown color for the title */
-  font-size: 2.5rem; /* Larger font size for the title */
+  margin-bottom: 30px;
+  color: #543A14;
+  font-size: 2.5rem;
 }
 
 .cards_container {
@@ -67,63 +66,99 @@ h1 {
   justify-content: space-around;
   padding: 20px;
   width: 100%;
-  max-width: 1200px; /* Limit card container width */
+  max-width: 1200px;
 }
 
 .card {
-  background: linear-gradient(
-    135deg,
-    #F0BB78,
-    #543A14
-  ); /* Gradient from light brown to dark brown */
+  background: linear-gradient(135deg, #F0BB78, #543A14);
   border-radius: 10px;
   padding: 20px;
   margin: 15px;
-  width: 250px; /* Fixed width for cards */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth scaling and shadow on hover */
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: space-between; /* Space between elements */
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card:hover {
-  transform: scale(1.05); /* Slightly enlarge card on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Deeper shadow on hover */
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .card h2 {
-  margin: 0; /* Remove default margin */
-  font-size: 1.5rem; /* Font size for product name */
-  color: #FFF0DC; /* Light peach text color */
+  margin: 0;
+  font-size: 1.5rem;
+  color: #FFF0DC;
 }
 
 .card p {
-  margin: 5px 0; /* Space between paragraphs */
-  color: #FFF0DC; /* Light peach text color */
+  margin: 5px 0;
+  color: #FFF0DC;
 }
 
 .price {
   font-size: 18px;
   font-weight: bold;
-  color: #FFF0DC; /* Light peach text color for price */
+  color: #FFF0DC;
 }
 
 .view_product_btn {
-  background-color: #131010; /* Dark color for button */
-  color: #FFF0DC; /* Light peach text color for button */
-  padding: 10px 15px; /* Padding for button */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Rounded corners for button */
-  text-align: center; /* Center text */
-  text-decoration: none; /* Remove underline */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth background and text color transition */
-  margin-top: 10px; /* Space above the button */
-  cursor: pointer; /* Change cursor to pointer */
+  background-color: #131010;
+  color: #FFF0DC;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .view_product_btn:hover {
-  border: 2px solid #F0BB78; /* Add a border on hover */
-  color: #F0BB78; /* Change text color on hover */
- /* Make background transparent on hover */
+  border: 2px solid #F0BB78;
+  color: #F0BB78;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .cards_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    margin: 10px 0;
+  }
+
+  .view_product_btn {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+  }
+
+  .view_product_btn {
+    padding: 14px;
+  }
 }

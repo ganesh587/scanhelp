@@ -120,3 +120,54 @@ input:focus {
   font-weight: bold;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .modal_content {
+    padding: 20px;
+    max-width: 90%;
+    width: 90%;
+  }
+
+  .form {
+    gap: 10px;
+  }
+
+  .form_group {
+    grid-template-columns: 1fr;
+  }
+
+  .submit_button,
+  .close_button {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal_content {
+    padding: 15px;
+    max-width: 90%;
+    width: 100%;
+  }
+
+  .form {
+    gap: 8px;
+  }
+
+  .form_group {
+    grid-template-columns: 1fr;
+  }
+
+  .submit_button,
+  .close_button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+}

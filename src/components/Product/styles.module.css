@@ -1,4 +1,3 @@
-/* Modal */
 .modal {
   z-index: 1;
   position: fixed;
@@ -12,7 +11,6 @@
   align-items: center;
 }
 
-/* Modal Content */
 .modal_content {
   background: #FFF0DC;
   padding: 30px;
@@ -24,7 +22,6 @@
   overflow-y: auto;
 }
 
-/* Scrollbar Styling */
 .modal_content::-webkit-scrollbar {
   width: 8px;
 }
@@ -43,21 +40,18 @@
   background: #543A14;
 }
 
-/* Header */
 h2 {
   text-align: center;
   color: #543A14;
   margin-bottom: 20px;
 }
 
-/* Form */
 .form {
   display: grid;
   grid-template-columns: 1fr;
   gap: 15px;
 }
 
-/* Form Group */
 .form_group {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -65,13 +59,11 @@ h2 {
   align-items: center;
 }
 
-/* Label */
 label {
   font-weight: bold;
   color: #543A14;
 }
 
-/* Input Styling */
 input {
   padding: 12px;
   border: 1px solid #543A14;
@@ -85,14 +77,12 @@ input:focus {
   outline: none;
 }
 
-/* Button Group */
 .button_group {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-/* Submit Button */
 .submit_button {
   flex: 1;
   padding: 12px;
@@ -110,7 +100,6 @@ input:focus {
   transform: translateY(-2px);
 }
 
-/* Close Button */
 .close_button {
   flex: 1;
   padding: 12px;
@@ -128,14 +117,63 @@ input:focus {
   transform: translateY(-2px);
 }
 
-/* Error Message */
 .error_msg {
   color: #131010;
   font-weight: bold;
   text-align: center;
 }
 
-/* Checkbox Group */
 .checkbox_group {
   margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .modal_content {
+    padding: 20px;
+    max-width: 90%;
+    width: 90%;
+  }
+
+  .form {
+    gap: 10px;
+  }
+
+  .form_group {
+    grid-template-columns: 1fr;
+  }
+
+  .submit_button,
+  .close_button {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal_content {
+    padding: 15px;
+    max-width: 90%;
+    width: 100%;
+  }
+
+  .form {
+    gap: 8px;
+  }
+
+  .form_group {
+    grid-template-columns: 1fr;
+  }
+
+  .submit_button,
+  .close_button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
 }

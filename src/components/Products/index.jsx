@@ -1,6 +1,4 @@
-// src/components/Products/index.jsx
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import { FaUser } from "react-icons/fa";
 import { jwtDecode } from "jwt-decode";
@@ -11,14 +9,14 @@ import EditProfileModal from "../EditProfileModal";
 import appconfig from '../../config';
 import Spinner from "../Spinner";
 import { Helmet } from 'react-helmet';
-import ProductModal from "../Product"; // Import ProductModal
+import ProductModal from "../Product";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null); // State for selected product
+  const [selectedProduct, setSelectedProduct] = useState(null); 
   const { isModalOpen, setModalOpen, handleSessionExpired } = useAuth(); 
 
   useEffect(() => {
@@ -73,7 +71,7 @@ const Products = () => {
   };
 
   const handleProductClick = (product) => {
-    setSelectedProduct(product); // Set the selected product when clicked
+    setSelectedProduct(product); 
   };
 
   return (
