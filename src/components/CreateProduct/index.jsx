@@ -17,9 +17,17 @@ const CreateProduct = () => {
     note: "",
     reward_amount: "",
     tag_type: 1, // Default tag_type
+    emergency_contact: null,
+    blood_group: null,
+    existing_health_issues: null,
+    existing_medication: null,
+    primary_doctor: null,
+    allergies: null,
+    physically_disabled: false,
   });
+
   const tag_type = localStorage.getItem("tag_type");
-const tag_id = localStorage.getItem("tag_id")
+  const tag_id = localStorage.getItem("tag_id");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -54,9 +62,16 @@ const tag_id = localStorage.getItem("tag_id")
         contact_phone: formData.contact_phone,
         contact_alternate_number: formData.contact_alternate_number || null,
         contact_address: formData.contact_address || null,
-        note: formData.tag_type === 1 ? formData.note : null, // Include note only for tag_type 1
-        reward_amount: formData.tag_type === 1 ? formData.reward_amount : null, // Include reward_amount only for tag_type 1
+        note: formData.tag_type === "1" ? formData.note : null, // Include note only for tag_type 1
+        reward_amount: formData.tag_type === "1" ? formData.reward_amount : null, // Include reward_amount only for tag_type 1
         owner: ownerId, // Set the owner to the user_id from the token
+        emergency_contact: formData.tag_type === "2" ? formData.emergency_contact : null,
+        blood_group: formData.tag_type === "2" ? formData.blood_group : null,
+        existing_health_issues: formData.tag_type === "2" ? formData.existing_health_issues : null,
+        existing_medication: formData.tag_type === "2" ? formData.existing_medication : null,
+        primary_doctor: formData.tag_type === "2" ? formData.primary_doctor : null,
+        allergies: formData.tag_type === "2" ? formData.allergies : null,
+        physically_disabled: formData.tag_type === "2" ? formData.physically_disabled : false,
       };
 
       // Make the POST request
@@ -93,7 +108,7 @@ const tag_id = localStorage.getItem("tag_id")
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="product_name"
+          name ="product_name"
           placeholder="Product Name"
           value={formData.product_name}
           onChange={handleChange}
@@ -108,7 +123,7 @@ const tag_id = localStorage.getItem("tag_id")
         />
         
         {/* Conditional rendering for reward_amount and note based on tag_type */}
-        {tag_type === 1 && (
+        {tag_type === "1" && (
           <>
             <input
               type="number"
@@ -127,11 +142,69 @@ const tag_id = localStorage.getItem("tag_id")
           </>
         )}
 
+        {/* Conditional rendering for medical details based on tag_type */}
+        {tag_type === "2" && (
+          <>
+            <input
+              type="text"
+              name="emergency_contact"
+              placeholder="Emergency Contact"
+              value={formData.emergency_contact}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="blood_group"
+              placeholder="Blood Group"
+              value={formData.blood_group}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="existing_health_issues"
+              placeholder="Existing Health Issues"
+              value={formData.existing_health_issues}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="existing_medication"
+              placeholder="Existing Medication"
+              value={formData.existing_medication}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="primary_doctor"
+              placeholder="Primary Doctor"
+              value={formData.primary_doctor}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="allergies"
+              placeholder="Allergies"
+              value={formData.allergies}
+              onChange={handleChange}
+            />
+            <div className={styles.switch_container}>
+              <label>
+                Physically Disabled:
+                <input
+                  type="checkbox"
+                  checked={formData.physically_disabled}
+                  onChange={() => setFormData((prevData) => ({ ...prevData, physically_disabled: !prevData.physically_disabled }))}
+                />
+              </label>
+            </div>
+          </>
+        )}
+
         <div className={styles.switch_container}>
           <label>
             Display:
             <input
-              type ="checkbox"
+              type="checkbox"
               checked={formData.display}
               onChange={handleSwitchChange}
             />
