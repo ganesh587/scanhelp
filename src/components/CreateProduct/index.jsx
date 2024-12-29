@@ -68,7 +68,7 @@ const CreateProduct = () => {
 
     try {
       setLoading(true);
-      await axios.post(`${config.API_URL}/products/a/`, data, {
+      await axios.post(`${config.API_URL}/products/add/`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
