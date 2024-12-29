@@ -105,6 +105,10 @@ const Products = () => {
     window.location.href = "/app/login";
   };
 
+  const handleEditProfileSuccess = (message) => {
+    setSuccessMessage(message);
+  };
+
   const handleLogoutCancel = () => {
     setLogoutModalOpen(false);
   };
@@ -120,8 +124,8 @@ const Products = () => {
         <title>Products</title>
       </Helmet>
       {isModalOpen && <SessionExpiredModal onClose={() => setModalOpen(false)} />}
-      {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")).user_id} onClose={() => setEditModalOpen(false)} />}
-      {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
+      {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")).user_id} onClose={() => setEditModalOpen(false)}/>}
+      {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} onSuccess={handleEditProfileSuccess} />}
       {isLogoutModalOpen &&   <QuestionModal title="Logout" message="Are you sure you want to logout?" onConfirm={handleLogoutConfirm} onCancel={handleLogoutCancel}/>}
 
       <div className={styles.header}>
