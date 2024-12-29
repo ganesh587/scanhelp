@@ -124,7 +124,7 @@ const Products = () => {
 
       <div className={styles.cards_container}>
         {/* Display "No products available" if the products array is empty */}
-        {products.length === 0 ? (
+        {(products.length === 0 && !loading) ? (
           <div className={styles.no_products_message}>
             <h2>No products available</h2>
           </div>
