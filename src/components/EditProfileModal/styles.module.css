@@ -102,6 +102,7 @@ input:focus {
 
 .submit_button:hover {
   background: #131010;
+  color: white;
   transform: translateY(-2px);
 }
 
@@ -112,13 +113,8 @@ input:focus {
 
 .close_button:hover {
   background: #543A14;
+  color: white;
   transform: translateY(-2px);
-}
-
-.error_msg {
-  color: #131010;
-  font-weight: bold;
-  text-align: center;
 }
 
 @media (max-width: 768px) {

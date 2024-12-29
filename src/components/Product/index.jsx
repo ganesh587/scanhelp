@@ -4,8 +4,8 @@ import appconfig from '../../config';
 import styles from "./styles.module.css";
 import { Helmet } from 'react-helmet';
 import Spinner from "../Spinner";
-import ErrorMessage from '../ErrorMessage'; 
-const Product = ({ product, onClose }) => {
+import Message from '../Message'; 
+const Product = ({ product, onClose,onSuccess  }) => {
   const [formData, setFormData] = useState({ ...product });
   const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("token");
@@ -13,8 +13,6 @@ const Product = ({ product, onClose }) => {
   useEffect(() => {
     setFormData({ ...product });
   }, [product]);
-
-  if (isLoading) return <Spinner />;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,10 +37,10 @@ const Product = ({ product, onClose }) => {
           },
         }
       );
+      onSuccess("Product updated successfully!");
       setIsLoading(false);
       onClose(); 
     } catch (error) {
-      console.error("Error updating product:", error);
       setError("Error updating product. Please try again.");
       setIsLoading(false);
     }
@@ -52,7 +50,8 @@ const Product = ({ product, onClose }) => {
 
   return (
     <div className={styles.modal}>
-        {error && <ErrorMessage message={error} duration={5000} onClose={() => setError("")} />}
+        {error && <Message type="error" message={error} duration={5000} onClose={() => setError("")} />}
+        {isLoading && <Spinner/>}
        <Helmet>
         <title>Edit Product</title> 
       </Helmet>

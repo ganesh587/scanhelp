@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import styles from "./styles.module.css";
 import config from '../../config';
 import Spinner from "../Spinner";
 import { Helmet } from 'react-helmet';
-import ErrorMessage from '../ErrorMessage'; 
+import Message from '../Message'; 
 const Login = () => {
+  const location = useLocation();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
   const handleChange = ({ currentTarget: input }) => {
@@ -18,8 +20,11 @@ const Login = () => {
   };
 
   useEffect(() => {
+    if (location.state?.successMessage) {
+      setSuccess(location.state.successMessage);
+    }
     localStorage.removeItem("token");
-  }, []);
+  }, [location.state]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,6 +63,8 @@ const Login = () => {
         <title>Login</title>
       </Helmet>
       {loading && <Spinner />}
+      {success && <Message type="success" message={success} duration={5000} onClose={() => setSuccess("")} />}
+      {error && <Message type="error" message={error} duration={5000} onClose={() => setError("")} />}
       <div className={styles.left}>
         <h1>ScanNHelp</h1>
       </div>
@@ -89,7 +96,7 @@ const Login = () => {
               className={styles.input}
             />
           </div>
-          {error && <ErrorMessage message={error} duration={5000} onClose={() => setError("")} />}
+          {error && <Message type="error" message={error} duration={5000} onClose={() => setError("")} />}
           <button type='submit' className={styles.green_btn}>
             Sign In
           </button>

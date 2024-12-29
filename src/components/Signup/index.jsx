@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
-import ErrorMessage from '../ErrorMessage'; 
+import Message from '../Message'; 
 import Spinner from "../Spinner";
 import { Helmet } from 'react-helmet';
 import config from '../../config';
@@ -15,6 +15,7 @@ const Signup = () => {
     address: "",
   });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -27,15 +28,16 @@ const Signup = () => {
     setLoading(true);
     try {
       const url = `${config.API_URL}/signup/`;
-      const response = await axios.post(url, {
+      await axios.post(url, {
         email: data.email,
         name: data.name,
         password: data.password,
         phone: data.phone,
         address: data.address,
       });
+      setSuccess("Registered Successfully!")
       setLoading(false);
-      navigate("/app/login");
+      navigate("/app/login",{ state: { successMessage: "Registered Successfully!" }});
     } catch (error) {
       setLoading(false);
       if (
@@ -47,13 +49,14 @@ const Signup = () => {
       }
     }
   };
-  if (loading) return <Spinner />;
   return (
     <div className={styles.signup_container}>
           <Helmet>
         <title>Register</title> 
       </Helmet>
-      {error && <ErrorMessage message={error} duration={5000} onClose={() => setError("")} />}
+      {success && <Message type="success" message={success} duration={5000} onClose={() => setSuccess("")} />}
+      {error && <Message type="error" message={error} duration={5000} onClose={() => setError("")} />}
+      {loading && <Spinner/>}
       <div className={styles.signup_form_container}>
         <div className={styles.left}>
           <h1>Welcome Back</h1>

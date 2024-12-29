@@ -1,0 +1,72 @@
+.message_bar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  max-width: 350px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+.message_bar span {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.close_button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  font-weight: bold;
+  line-height: 1;
+  width: auto;
+  height: auto;
+  margin-left: 10px;
+  transition: color 0.2s;
+}
+
+.message_bar.error {
+  background-color: #ff4d4d;
+}
+
+.message_bar.success {
+  background-color: #28a745;
+}
+
+@media (max-width: 768px) {
+  .message_bar {
+    font-size: 12px;
+    top: 10px;
+    right: 10px;
+    max-width: 280px;
+  }
+
+  .close_button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .message_bar {
+    font-size: 11px;
+    top: 8px;
+    right: 8px;
+    max-width: 200px;
+    padding: 8px 12px;
+  }
+
+  .close_button {
+    font-size: 12px;
+  }
+}

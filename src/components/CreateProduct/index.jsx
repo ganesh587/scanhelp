@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import config from '../../config';
 import { Helmet } from 'react-helmet';
 import Spinner from "../Spinner";
-import ErrorMessage from '../ErrorMessage'; 
+import Message from '../Message'; 
 
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
@@ -86,7 +86,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <> {error && <ErrorMessage message={error} duration={5000} onClose={() => setError("")} />}
+    <> {error && <Message type="error" message={error} duration={5000} onClose={() => setError("")} />}
     <div className={styles.create_product_container}>
           <Helmet>
         <title>Create Product</title>

@@ -126,8 +126,19 @@ h1 {
 
 .logout_icon {
   cursor: pointer;
-  margin-left: auto;  /* This ensures the logout icon floats to the right */
+  margin-left: auto; 
 }
+
+.no_products_message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  color: #555;
+  font-size: 1.5rem;
+}
+
 
 @media (max-width: 768px) {
   .header {

@@ -4,9 +4,9 @@ import styles from "./styles.module.css";
 import config from '../../config';
 import Spinner from "../Spinner";
 import { Helmet } from 'react-helmet';
-import ErrorMessage from '../ErrorMessage';
+import Message from '../Message';
 
-const EditProfileModal = ({ userId, onClose }) => {
+const EditProfileModal = ({ userId, onClose,onSuccess }) => {
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -54,6 +54,7 @@ const EditProfileModal = ({ userId, onClose }) => {
           "Content-Type": "application/json",
         },
       });
+      onSuccess("Profile updated successfully!");
       onClose();
     } catch (error) {
       setError("Error updating user details. Please try again.");
@@ -64,7 +65,7 @@ const EditProfileModal = ({ userId, onClose }) => {
 
   return (
     <>
-      {error && <ErrorMessage message={error} duration={5000} onClose={() => setError("")} />}
+      {error && <Message type="error" message={error} duration={5000} onClose={() => setError("")} />}
 
       <div className={styles.modal}>
         <Helmet>
