@@ -90,7 +90,6 @@ const Product = ({ product, onClose }) => {
               name="contact_name"
               value={formData.contact_name}
               onChange={handleChange}
-              required
             />
           </div>
 
@@ -102,7 +101,6 @@ const Product = ({ product, onClose }) => {
               name="contact_phone"
               value={formData.contact_phone}
               onChange={handleChange}
-              required
             />
           </div>
 
@@ -138,7 +136,6 @@ const Product = ({ product, onClose }) => {
                   name="reward_amount"
                   value={formData.reward_amount}
                   onChange={handleChange}
-                  required
                 />
               </div>
 
@@ -149,7 +146,6 @@ const Product = ({ product, onClose }) => {
                   name="note"
                   value={formData.note}
                   onChange={handleChange}
-                  required
                 />
               </div>
             </>
