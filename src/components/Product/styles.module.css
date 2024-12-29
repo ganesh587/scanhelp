@@ -177,3 +177,23 @@ input:focus {
     font-size: 1.6rem;
   }
 }
+
+/* Target the textarea for the 'Note' field */
+textarea {
+  padding: 16px;
+  border: 2px solid #F0BB78;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 89%;
+  background-color: #FFF8E1;
+  color: #543A14;
+  transition: all 0.3s ease-in-out;
+  resize: vertical;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+textarea::placeholder {
+  color: #B3A99F;
+  font-style: italic;
+  font-weight: 500;
+}

@@ -4,11 +4,12 @@ import appconfig from '../../config';
 import styles from "./styles.module.css";
 import { Helmet } from 'react-helmet';
 import Spinner from "../Spinner";
+import ErrorMessage from '../ErrorMessage'; 
 const Product = ({ product, onClose }) => {
   const [formData, setFormData] = useState({ ...product });
   const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("token");
-
+  const [error, setError] = useState("");
   useEffect(() => {
     setFormData({ ...product });
   }, [product]);
@@ -42,6 +43,7 @@ const Product = ({ product, onClose }) => {
       onClose(); 
     } catch (error) {
       console.error("Error updating product:", error);
+      setError("Error updating product. Please try again.");
       setIsLoading(false);
     }
   };
@@ -50,6 +52,7 @@ const Product = ({ product, onClose }) => {
 
   return (
     <div className={styles.modal}>
+        {error && <ErrorMessage message={error} duration={5000} onClose={() => setError("")} />}
        <Helmet>
         <title>Edit Product</title> 
       </Helmet>

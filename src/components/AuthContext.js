@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   const handleSessionExpired = () => {
     setModalOpen(true);
     localStorage.removeItem("token"); // Clear the token
-    navigate("/login"); // Redirect to login page
+    navigate("/app/login"); // Redirect to login page
   };
 
   return (

@@ -10,7 +10,7 @@ import appconfig from '../../config';
 import Spinner from "../Spinner";
 import { Helmet } from 'react-helmet';
 import ProductModal from "../Product";
-
+import ErrorMessage from '../ErrorMessage'; 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -64,7 +64,6 @@ const Products = () => {
   }, [handleSessionExpired]);
 
   if (loading) return <Spinner />;
-  if (error) return <p>{error}</p>;
 
   const handleEditProfileClick = () => {
     setEditModalOpen(true); 
@@ -76,6 +75,7 @@ const Products = () => {
 
   return (
     <div className={styles.products_container}>
+        {error && <ErrorMessage message={error} duration={5000} onClose={() => setError("")} />}
       <Helmet>
         <title>Products</title>
       </Helmet>

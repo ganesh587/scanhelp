@@ -38,10 +38,10 @@ const Scan = () => {
           localStorage.setItem("tag_id", tagId);
           localStorage.setItem("tag_type", tagType);
           // Redirect to login if product not found
-          navigate("/login");
+          navigate("/app/login");
         } else {
           // If product found, redirect to ScannedProduct page with product data
-          navigate("/scanned-product", { state: response.data });
+          navigate("/app/scanned-product", { state: response.data });
         }
       } catch (error) {
         console.error("Error during scan:", error);

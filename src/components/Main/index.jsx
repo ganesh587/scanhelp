@@ -1,24 +1,27 @@
 import styles from "./styles.module.css";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet';
+
 const Main = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove the token
-    navigate("/login"); // Redirect to login page
+    localStorage.removeItem("token");
+    navigate("/app/login");
   };
 
   return (
     <div className={styles.main_container}>
-         <Helmet>
+      <Helmet>
         <title>Home</title>
       </Helmet>
-        <iframe
-        src="/main.html"  // The path to your HTML file
+      <button className={styles.login_button} onClick={handleLogout}>Login</button>
+      <iframe
+        id="myIframe"
+        src="/main.html"
         title="Embedded HTML Page"
-        width="100%"  // Adjust as needed
-        height="600px"  // Adjust as needed
+        width="100%"
+        height="600px"
         frameBorder="0"
       />
     </div>

@@ -1,27 +1,178 @@
-.navbar {
+/* Modal styles */
+.modal {
+	z-index: 1000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.6); /* Slightly transparent black background */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  .modal_content {
+	background: #1f1f1f; /* Dark gray background for the modal */
+	padding: 30px;
+	border-radius: 8px;
+	width: 90%;
+	max-width: 500px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+	max-height: 85vh;
+	overflow-y: auto;
+  }
+  
+  /* Heading */
+  h2 {
+	text-align: center;
+	color: #d8d8d8; /* Light gray for headings */
+	margin-bottom: 20px;
+	font-size: 1.8rem;
+  }
+  
+  /* Form styles */
+  .form {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 15px;
+  }
+  
+  .form_group {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 10px;
+	align-items: center;
+  }
+  
+  label {
+	font-weight: bold;
+	color: #b0b0b0; /* Soft gray for labels */
+  }
+  
+  input {
+	padding: 12px;
+	border: 1px solid #444444; /* Dark border */
+	border-radius: 6px;
+	font-size: 14px;
+	background-color: #333333; /* Darker background for inputs */
+	color: #f5f5f5; /* Light text inside inputs */
+	transition: border-color 0.3s, background-color 0.3s;
+  }
+  
+  input:focus {
+	border-color: #00B8D4; /* Cyan border on focus */
+	background-color: #444444; /* Slightly lighter background */
+	outline: none;
+  }
+  
+  /* Button styles */
+  .button_group {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+  }
+  
+  .submit_button,
+  .close_button {
+	flex: 1;
+	padding: 12px;
+	margin: 0 5px;
+	border: none;
+	border-radius: 6px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .submit_button {
+	background: #00B8D4; /* Light cyan for the submit button */
+	color: #ffffff; /* White text */
+  }
+  
+  .submit_button:hover {
+	background: #008C9E; /* Darker cyan on hover */
+	transform: translateY(-2px);
+  }
+  
+  .close_button {
+	background: #FF5722; /* Deep orange for close button */
+	color: #ffffff; /* White text */
+  }
+  
+  .close_button:hover {
+	background: #E64A19; /* Darker orange on hover */
+	transform: translateY(-2px);
+  }
+  
+  /* Error message */
+  .error_msg {
+	color: #FF5252; /* Bright red for error messages */
+	font-weight: bold;
+	text-align: center;
+  }
+  
+  /* Navbar styles */
+  .navbar {
 	width: 100%;
 	height: 70px;
-	background-color: #3bb19b;
+	background-color: #333333; /* Dark background for navbar */
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
-
-.navbar h1 {
-	color: white;
+  }
+  
+  .navbar h1 {
+	color: #ffffff; /* White text for title */
 	font-size: 25px;
 	margin-left: 20px;
-}
-
-.white_btn {
+  }
+  
+  /* Button styles */
+  .white_btn {
 	border: none;
 	outline: none;
 	padding: 12px 0;
-	background-color: white;
+	background-color: #ffffff;
 	border-radius: 20px;
 	width: 120px;
 	font-weight: bold;
 	font-size: 14px;
 	cursor: pointer;
 	margin-right: 20px;
-}
+	color: #333333; /* Dark text for button */
+  }
+  
+  .white_btn:hover {
+	background-color: #cccccc; /* Light gray hover effect */
+  }
+  
+  .main_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+  }
+  
+  .login_button {
+	background-color: transparent;
+	color: #444444; /* Dark text color */
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+  }
+  
+  .login_button:hover {
+	background-color: #00B8D4; /* Light cyan hover effect */
+  }
+  
+  iframe {
+	margin-top: 20px;
+	border-radius: 10px;
+	border: 2px solid #3a3a3a; /* Dark border around iframe */
+  }
+  

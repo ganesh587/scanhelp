@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 import config from '../../config';
 import Spinner from "../Spinner";
 import { Helmet } from 'react-helmet';
-
+import ErrorMessage from '../ErrorMessage'; 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -89,12 +89,12 @@ const Login = () => {
               className={styles.input}
             />
           </div>
-          {error && <div className={styles.error_msg}>{error}</div>}
+          {error && <ErrorMessage message={error} duration={5000} onClose={() => setError("")} />}
           <button type='submit' className={styles.green_btn}>
             Sign In
           </button>
           <p className={styles.register_text}>
-            Don't have an account? <Link to='/signup'>Sign Up</Link>
+            Don't have an account? <Link to='/app/signup'>Sign Up</Link>
           </p>
         </form>
       </div>
