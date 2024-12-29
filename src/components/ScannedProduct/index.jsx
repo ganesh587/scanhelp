@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 const ScannedProduct = () => {
   const location = useLocation();
 
-  if (location.state?.message === "product display is off") {
+  if (location.state?.message === "Product display is off") {
     return (
       <div className={styles.modal}>
         <div className={styles.modal_content}>
