@@ -1,172 +1,18 @@
-.modal {
-	z-index: 1000;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: rgba(0, 0, 0, 0.8);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  }
-  
-  .modal_content {
-	background: #2a2a2a;
-	padding: 30px;
-	border-radius: 8px;
-	width: 90%;
-	max-width: 500px;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-	max-height: 85vh;
-	overflow-y: auto;
-  }
-  
-  h2 {
-	text-align: center;
-	color: #e0e0e0;
-	margin-bottom: 20px;
-	font-size: 1.8rem;
-  }
-  
-  .form {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 15px;
-  }
-  
-  .form_group {
-	display: grid;
-	grid-template-columns: 1fr 2fr;
-	gap: 10px;
-	align-items: center;
-  }
-  
-  label {
-	font-weight: bold;
-	color: #b0b0b0;
-  }
-  
-  input {
-	padding: 12px;
-	border: 1px solid #444444;
-	border-radius: 6px;
-	font-size: 14px;
-	background-color: #333333;
-	color: #f5f5f5;
-	transition: border-color 0.3s, background-color 0.3s;
-  }
-  
-  input:focus {
-	border-color: #00B8D4;
-	background-color: #444444;
-	outline: none;
-  }
-  
-  .button_group {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 20px;
-  }
-  
-  .submit_button,
-  .close_button {
-	flex: 1;
-	padding: 12px;
-	margin: 0 5px;
-	border: none;
-	border-radius: 6px;
-	font-size: 16px;
-	cursor: pointer;
-	transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .submit_button {
-	background: #00B8D4;
-	color: #ffffff;
-  }
-  
-  .submit_button:hover {
-	background: #008C9E;
-	transform: translateY(-2px);
-  }
-  
-  .close_button {
-	background: #FF5722;
-	color: #ffffff;
-  }
-  
-  .close_button:hover {
-	background: #E64A19;
-	transform: translateY(-2px);
-  }
-  
-  .error_msg {
-	color: #FF5252;
-	font-weight: bold;
-	text-align: center;
-  }
-  
-  .navbar {
-	width: 100%;
-	height: 70px;
-	background-color: #333333;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-  }
-  
-  .navbar h1 {
-	color: #ffffff;
-	font-size: 25px;
-	margin-left: 20px;
-  }
-  
-  .white_btn {
-	border: none;
-	outline: none;
-	padding: 12px 0;
-	background-color: #ffffff;
-	border-radius: 20px;
-	width: 120px;
-	font-weight: bold;
-	font-size: 14px;
-	cursor: pointer;
-	margin-right: 20px;
-	color: #333333;
-  }
-  
-  .white_btn:hover {
-	background-color: #cccccc;
-  }
-  
-  .main_container {
+.main_container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 20px;
-  }
-  
-  .login_button {
-	background-color: transparent;
-	color: #444444;
-	border: none;
-	padding: 10px 20px;
-	font-size: 32px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-  }
-  
-  .login_button:hover {
-	background-color: #3a3a3a;
-	color: white;
+	padding: 0;
+	margin: 0;
+	height: 100vh;  /* Full height of the viewport */
+	width: 100vw;   /* Full width of the viewport */
+	overflow: hidden;  /* Prevent scrolling in the parent */
   }
   
   iframe {
-	margin-top: 20px;
-	border-radius: 10px;
-	border: 2px solid #3a3a3a;
+	width: 100%;   /* Full width */
+	height: 100%;  /* Full height of the viewport */
+	border: none;  /* Optional: remove border */
   }
   

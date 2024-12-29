@@ -76,14 +76,20 @@
               <nav
                 class="navigation-links-nav navigation-links-root-class-name10"
               >
-              <a href="#" id="loginBtn" class="navigation-links-link1 navbar-link">
-                <span>Login</span>
-              </a>
+         
                 <a href="#aboutus" class="navigation-links-link1 navbar-link">
                   <span>About</span>
                 </a>
                 <a href="#contactus" class="navigation-links-link2 navbar-link">
                   <span>Contact</span>
+                </a>
+
+                <a href="#" id="loginBtn" class="navigation-links-link1 navbar-link">
+                  <span>Login</span>
+                </a>
+
+                <a href="#" id="registerBtn" class="navigation-links-link1 navbar-link">
+                  <span>Sign Up</span>
                 </a>
                 
               </nav>
@@ -451,8 +457,10 @@
     <script src="https://unpkg.com/@teleporthq/teleport-custom-scripts"></script>
     <script>
       document.getElementById('loginBtn').addEventListener('click', function() {
-        // Send a message to the parent React component
         window.parent.postMessage({ action: 'login' }, '*');
+      });
+      document.getElementById('registerBtn').addEventListener('click', function() {
+        window.parent.postMessage({ action: 'register' }, '*');
       });
       window.onload = () => {
         const runAllScripts = () => {
