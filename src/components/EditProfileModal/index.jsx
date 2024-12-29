@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import config from '../../config';
 import Spinner from "../Spinner";
 import { Helmet } from 'react-helmet';
-import ErrorMessage from '../ErrorMessage'; 
+import ErrorMessage from '../ErrorMessage';
 
 const EditProfileModal = ({ userId, onClose }) => {
   const [formData, setFormData] = useState({
@@ -64,7 +64,6 @@ const EditProfileModal = ({ userId, onClose }) => {
 
   return (
     <>
-      {/* ErrorMessage Component will handle displaying errors */}
       {error && <ErrorMessage message={error} duration={5000} onClose={() => setError("")} />}
 
       <div className={styles.modal}>
@@ -76,12 +75,12 @@ const EditProfileModal = ({ userId, onClose }) => {
           {loading && <Spinner />}
           <form onSubmit={handleSubmit} className={styles.form}>
             {[
-              { label: "Email", type: "email", name: "email" },
-              { label: "Name", type: "text", name: "name" },
-              { label: "Phone", type: "text", name: "phone" },
-              { label: "Alternate Number", type: "text", name: "alternate_number" },
-              { label: "Address", type: "text", name: "address" },
-            ].map(({ label, type, name }) => (
+              { label: "Email", type: "email", name: "email", required: true },
+              { label: "Name", type: "text", name: "name", required: true },
+              { label: "Phone", type: "text", name: "phone", required: false },
+              { label: "Alternate Number", type: "text", name: "alternate_number", required: false },
+              { label: "Address", type: "text", name: "address", required: false },
+            ].map(({ label, type, name, required }) => (
               <div className={styles.form_group} key={name}>
                 <label htmlFor={name} className={styles.label}>{label}</label>
                 <input
@@ -92,7 +91,7 @@ const EditProfileModal = ({ userId, onClose }) => {
                   value={formData[name]}
                   onChange={handleChange}
                   className={styles.input}
-                  required
+                  required={required}
                 />
               </div>
             ))}
