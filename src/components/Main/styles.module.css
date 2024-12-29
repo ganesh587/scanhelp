@@ -153,14 +153,15 @@
 	color: #444444;
 	border: none;
 	padding: 10px 20px;
-	font-size: 16px;
+	font-size: 32px;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
   }
   
   .login_button:hover {
-	background-color: #00B8D4;
+	background-color: #3a3a3a;
+	color: white;
   }
   
   iframe {

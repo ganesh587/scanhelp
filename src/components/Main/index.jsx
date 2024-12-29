@@ -20,7 +20,7 @@ const Main = () => {
         <title>Home</title>
       </Helmet>
       <button className={styles.login_button} onClick={handleButtonClick}>
-        GO TO SCAN
+      Register ScanNHelp Tag
       </button>
       <iframe
         id="myIframe"

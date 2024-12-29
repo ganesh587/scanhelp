@@ -1,36 +1,50 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #FFF0DC; /* Light cream background for the whole page */
-}
-
 .create_product_container {
   width: 100%;
   max-width: 800px;
   margin: 50px auto;
   padding: 40px;
-  background-color: #FFF0DC; /* Light cream color */
+  background-color: rgba(255, 240, 220, 0.9); /* Added transparency for background blur effect */
+  backdrop-filter: blur(8px); /* Background blur effect */
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  position: relative;
+  box-sizing: border-box; /* Ensures padding does not affect container width */
 }
 
-h1 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 30px;
-  color: #543A14; /* Deep brown */
+    .container {
+      width: 100%;
+      background-color: #FFF0DC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+.card {
+  background-color: rgba(255, 249, 242, 0.9); /* Semi-transparent background for the form card */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Ensures padding is inside the element */
+}
+
+.card h2 {
+  font-size: 24px;
+  color: #543A14;
+  margin-bottom: 15px;
 }
 
 .form_group {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .form_group label {
   font-size: 16px;
   font-weight: bold;
-  display: block;
   margin-bottom: 8px;
-  color: #131010; /* Dark brown */
+  color: #131010;
 }
 
 .form_group input,
@@ -38,24 +52,19 @@ h1 {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  border: 2px solid #F0BB78; /* Warm yellow border */
+  border: 2px solid #F0BB78;
   border-radius: 6px;
-  background-color: #FFF9F2; /* Lighter background for inputs */
+  background-color: #FFF9F2;
+  color: #000000;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  color: #000000; /* Ensure black text color */
+  box-sizing: border-box; /* Ensures padding does not affect width */
 }
-
 
 .form_group input:focus,
 .form_group textarea:focus {
   outline: none;
-  border-color: #543A14; /* Focused border with deep brown */
+  border-color: #543A14;
   box-shadow: 0 0 8px rgba(84, 58, 20, 0.5);
-}
-
-.form_group textarea {
-  resize: vertical;
-  min-height: 120px;
 }
 
 .switch_container {
@@ -71,8 +80,8 @@ h1 {
 button {
   width: 100%;
   padding: 15px;
-  background-color: #543A14; /* Warm yellow */
-  color: #FFF0DC; /* Dark brown text */
+  background-color: #543A14;
+  color: #FFF0DC;
   font-size: 18px;
   border: none;
   border-radius: 6px;
@@ -81,48 +90,23 @@ button {
 }
 
 button:hover {
-  background-color: #F0BB78; /* Deep brown on hover */
-  color: #131010; /* Light cream text color */
-  transform: scale(1.05); /* Slight scale effect */
+  background-color: #F0BB78;
+  color: #131010;
+  transform: scale(1.05);
 }
 
-.error_msg {
-  background-color: #FFDDC1; /* Light red for error background */
-  color: #D8000C; /* Red text color */
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 1px solid #D8000C;
-  border-radius: 6px;
-  font-size: 16px;
-  text-align: center;
-}
-
+/* Mobile-friendly Styles */
 @media (max-width: 768px) {
   .create_product_container {
     padding: 30px;
   }
 
-  h1 {
-    font-size: 26px;
+  .card {
+    padding: 15px;
   }
 
-  .form_group input,
-  .form_group textarea {
-    font-size: 15px;
-  }
-
-  button {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .create_product_container {
-    padding: 20px;
-  }
-
-  h1 {
-    font-size: 22px;
+  .form_group label {
+    font-size: 14px;
   }
 
   .form_group input,
@@ -131,6 +115,31 @@ button:hover {
   }
 
   button {
-    font-size: 15px;
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .create_product_container {
+    padding: 20px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+  .form_group label {
+    font-size: 13px;
+  }
+
+  .form_group input,
+  .form_group textarea {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px;
   }
 }
