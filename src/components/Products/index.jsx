@@ -82,7 +82,7 @@ const Products = () => {
         },
       };
       setLoading(true);
-      await axios.delete(`${appconfig.API_URL}/products/${productId}`, config);
+      await axios.delete(`${appconfig.API_URL}/products/${productId}/`, config);
       setLoading(false);
       setSuccessMessage("Product deleted successfully!");
       
