@@ -42,7 +42,9 @@ h1 {
   border-radius: 6px;
   background-color: #FFF9F2; /* Lighter background for inputs */
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #000000; /* Ensure black text color */
 }
+
 
 .form_group input:focus,
 .form_group textarea:focus {
@@ -58,6 +60,7 @@ h1 {
 
 .switch_container {
   margin-top: 12px;
+  margin-bottom: 12px;
   font-size: 16px;
 }
 
@@ -68,8 +71,8 @@ h1 {
 button {
   width: 100%;
   padding: 15px;
-  background-color: #F0BB78; /* Warm yellow */
-  color: #131010; /* Dark brown text */
+  background-color: #543A14; /* Warm yellow */
+  color: #FFF0DC; /* Dark brown text */
   font-size: 18px;
   border: none;
   border-radius: 6px;
@@ -78,8 +81,8 @@ button {
 }
 
 button:hover {
-  background-color: #543A14; /* Deep brown on hover */
-  color: #FFF0DC; /* Light cream text color */
+  background-color: #F0BB78; /* Deep brown on hover */
+  color: #131010; /* Light cream text color */
   transform: scale(1.05); /* Slight scale effect */
 }
 

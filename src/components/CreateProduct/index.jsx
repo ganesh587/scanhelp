@@ -68,14 +68,13 @@ const CreateProduct = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post(`${config.API_URL}/products/add/`, data, {
+      await axios.post(`${config.API_URL}/products/a/`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
 
-      console.log("Product created:", response.data);
       localStorage.removeItem("tag_id");
       localStorage.removeItem("tag_type");
       setLoading(false);
@@ -153,13 +152,6 @@ const CreateProduct = () => {
           </>
         )}
 
-        <div className={styles.switch_container}>
-          <label>
-            Display
-            <input type="checkbox" checked={formData.display} onChange={() => setFormData(prevData => ({ ...prevData, display: !prevData.display }))} />
-          </label>
-        </div>
-
         <div className={styles.form_group}>
           <label htmlFor="contact_name">Contact Name</label>
           <input type="text" id="contact_name" name="contact_name" placeholder="Contact Name" value={formData.contact_name} onChange={handleChange} />
@@ -180,6 +172,13 @@ const CreateProduct = () => {
           <input type="text" id="contact_address" name="contact_address" placeholder="Contact Address" value={formData.contact_address} onChange={handleChange} />
         </div>
 
+        <div className={styles.switch_container}>
+          <label>
+            Display
+            <input type="checkbox" checked={formData.display} onChange={() => setFormData(prevData => ({ ...prevData, display: !prevData.display }))} />
+          </label>
+        </div>
+        
         <button type="submit">Create Product</button>
       </form>
     </div>
