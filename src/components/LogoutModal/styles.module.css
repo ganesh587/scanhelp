@@ -1,42 +1,38 @@
-/* Overlay */
 .modal_overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Darker semi-transparent background for better focus */
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure it appears above all other content */
+  z-index: 1000;
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Modal Content */
 .modal_content {
-  background-color: #ffffff; /* White background for the modal */
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 10px;
   text-align: center;
   width: 350px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   animation: slideUp 0.3s ease-in-out;
 }
 
-/* Title */
 h2 {
   font-size: 18px;
   font-weight: 600;
-  color: #333; /* Dark gray color for text */
+  color: #333;
   margin-bottom: 20px;
 }
 
-/* Buttons */
 .modal_buttons {
   margin-top: 20px;
   display: flex;
-  justify-content: space-around; /* Space buttons evenly */
+  justify-content: space-around;
 }
 
 .cancel_button,
@@ -47,43 +43,29 @@ h2 {
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  transition: background-color 0.2s ease, transform 0.1s ease; /* Smooth transition effects */
-  width: 40%; /* Make buttons more consistent in size */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  width: 40%;
 }
 
-/* Cancel Button */
 .cancel_button {
-  background-color: #f44336; /* Red for Cancel */
-  color: white;
+  background-color: #FFF0DC;
+  color: #543A14;
 }
 
-.cancel_button:hover {
-  background-color: #d32f2f; /* Darker red on hover */
-  transform: scale(1.05); /* Slight grow effect */
-}
-
-.cancel_button:focus {
-  outline: 3px solid #f44336; /* Focus ring for accessibility */
-}
-
-/* Confirm Button */
 .confirm_button {
-  background-color: #4caf50; /* Green for Confirm */
+  background-color: #543A14;
+  color: #FFF0DC;
+}
+
+.confirm_button:hover,.cancel_button:hover {
+  background-color: black;
   color: white;
+  border: 2px solid #F0BB78;
+  transform: scale(1.05);
 }
 
-.confirm_button:hover {
-  background-color: #388e3c; /* Darker green on hover */
-  transform: scale(1.05); /* Slight grow effect */
-}
-
-.confirm_button:focus {
-  outline: 3px solid #4caf50; /* Focus ring for accessibility */
-}
-
-/* Accessibility Improvements */
 .modal_overlay:focus {
-  outline: none; /* Remove default focus outline for better visual consistency */
+  outline: none;
 }
 
 @keyframes fadeIn {

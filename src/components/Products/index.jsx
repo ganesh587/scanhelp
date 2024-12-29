@@ -77,19 +77,16 @@ const Products = () => {
   };
 
   const handleLogoutClick = () => {
-    console.log("test")
-    setLogoutModalOpen(true);  // Open the logout modal
+    setLogoutModalOpen(true); 
   };
 
   const handleLogoutConfirm = () => {
-    // Remove the token from localStorage
-    localStorage.removeItem("token");
-    // Optionally redirect to login page or show a success message
-    window.location.href = "/app/login";  // Redirect to login page or dashboard
+    localStorage.clear();
+    window.location.href = "/app/login";  
   };
 
   const handleLogoutCancel = () => {
-    setLogoutModalOpen(false);  // Close the logout modal without logging out
+    setLogoutModalOpen(false);  
   };
 
   return (
