@@ -20,28 +20,25 @@ const CreateProduct = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [userDataLoading, setUserDataLoading] = useState(true);
   const navigate = useNavigate();
 
   const tag_type = localStorage.getItem("tag_type");
   const tag_id = localStorage.getItem("tag_id");
 
   useEffect(() => {
-    // Get the token from localStorage
     const token = localStorage.getItem("token");
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
     const userId = decodedToken.user_id;
 
-    // Fetch user data
     const fetchUserData = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`${config.API_URL}/users/${userId}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        // Populate the form with the fetched user data
         const { name, phone, alternate_number, address } = response.data;
         setFormData((prevData) => ({
           ...prevData,
@@ -50,15 +47,15 @@ const CreateProduct = () => {
           contact_alternate_number: alternate_number || "",
           contact_address: address || "",
         }));
-        setUserDataLoading(false);
+        setLoading(false);
       } catch (err) {
-        setUserDataLoading(false);
+        setLoading(false);
         setError("Error fetching user data. Please try again.");
       }
     };
 
     fetchUserData();
-  }, []); // Empty dependency array to run only once after mount
+  }, []); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -199,7 +196,7 @@ const CreateProduct = () => {
 
           <div className={styles.switch_container}>
             <label>
-              {tag_type == 1 ? 'Mark as Lost':'Display Health Info '}
+              {tag_type === 1 ? 'Mark as Lost':'Display Health Info '}
               <input
                 type="checkbox"
                 checked={formData.display}

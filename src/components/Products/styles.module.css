@@ -41,23 +41,10 @@
   color: #4DA1A9;
   margin-right: 10px;
   transition: color 0.3s ease;
-  float: left;
 }
 
-.create_button {
-  color: #F0BB78;
-  transition: color 0.3s ease;
-}
-
-.profile_icon:hover,
-.create_button:hover {
+.profile_icon:hover {
   color: #543A14;
-}
-
-h1 {
-  margin-bottom: 30px;
-  color: #543A14;
-  font-size: 2.5rem;
 }
 
 .cards_container {
@@ -80,18 +67,9 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start; 
-}
-.card {
+  align-items: flex-start;
   position: relative;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 .card:hover {
   transform: scale(1.05);
@@ -106,12 +84,6 @@ h1 {
 
 .card p {
   margin: 5px 0;
-  color: #FFF0DC;
-}
-
-.price {
-  font-size: 18px;
-  font-weight: bold;
   color: #FFF0DC;
 }
 
@@ -136,7 +108,7 @@ h1 {
 
 .logout_icon {
   cursor: pointer;
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .no_products_message {
@@ -195,7 +167,7 @@ h1 {
   top: 10px;
   right: 10px;
   cursor: pointer;
-  color: white; 
+  color: white;
   transition: color 0.3s ease;
 }
 

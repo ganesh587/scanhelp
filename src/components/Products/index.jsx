@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useCallback } from "react";
 import styles from "./styles.module.css";
 import { FaUser, FaSignOutAlt, FaTrash } from "react-icons/fa";
 import { jwtDecode } from "jwt-decode";
@@ -10,8 +10,8 @@ import appconfig from '../../config';
 import Spinner from "../Spinner";
 import { Helmet } from 'react-helmet';
 import ProductModal from "../Product";
-import Message from '../Message'; 
-import LogoutModal from '../LogoutModal'; 
+import Message from '../Message';
+import QuestionModal from "../QuestionModal";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -23,8 +23,7 @@ const Products = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // Fetch products function
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -52,7 +51,7 @@ const Products = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [handleSessionExpired]);
 
   useEffect(() => {
     fetchProducts();
@@ -66,7 +65,7 @@ const Products = () => {
 
     const intervalId = setInterval(checkToken, 1000);
     return () => clearInterval(intervalId);
-  }, [handleSessionExpired]);
+  }, [fetchProducts,handleSessionExpired]);
 
   const handleDeleteProduct = async (productId) => {
     try {
@@ -123,7 +122,7 @@ const Products = () => {
       {isModalOpen && <SessionExpiredModal onClose={() => setModalOpen(false)} />}
       {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")).user_id} onClose={() => setEditModalOpen(false)} />}
       {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
-      {isLogoutModalOpen && <LogoutModal onConfirm={handleLogoutConfirm} onCancel={handleLogoutCancel} />}
+      {isLogoutModalOpen &&   <QuestionModal title="Logout" message="Are you sure you want to logout?" onConfirm={handleLogoutConfirm} onCancel={handleLogoutCancel}/>}
 
       <div className={styles.header}>
         <div className={styles.header_content}>
