@@ -3,12 +3,16 @@
   max-width: 800px;
   margin: 50px auto;
   padding: 40px;
-  background-color: rgba(255, 240, 220, 0.9); /* Added transparency for background blur effect */
-  backdrop-filter: blur(8px); /* Background blur effect */
+  background-color: rgba(255, 240, 220, 0.9); 
+  backdrop-filter: blur(8px); 
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   position: relative;
-  box-sizing: border-box; /* Ensures padding does not affect container width */
+  box-sizing: border-box; 
+}
+
+.create_product_container h1{
+  margin-left: 7rem;
 }
 
     .container {
@@ -118,6 +122,11 @@ button:hover {
     font-size: 16px;
     padding: 12px;
   }
+
+  .create_product_container h1{
+    margin-left: 5rem;
+    font-size: 30px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -142,4 +151,10 @@ button:hover {
     font-size: 14px;
     padding: 10px;
   }
+
+  .create_product_container h1{
+    margin-left: 7rem;
+    font-size: 20px;
+  }
+  
 }

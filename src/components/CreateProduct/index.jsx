@@ -105,13 +105,13 @@ const CreateProduct = () => {
 
   return (
     <div className={styles.container}>
-      
       <div className={styles.create_product_container}>
       {error && <Message type="error" message={error} duration={5000} onClose={() => setError("")} />}
         <Helmet>
           <title>Create Product</title>
         </Helmet>
         {loading && <Spinner />}
+        <h1>Register ScanNHelp Tag</h1>
         <form onSubmit={handleSubmit}>
           <div className={styles.card}>
             <h2>Product Information</h2>
