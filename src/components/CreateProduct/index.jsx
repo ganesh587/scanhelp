@@ -70,7 +70,7 @@ const CreateProduct = () => {
     const token = localStorage.getItem("token");
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
     const ownerId = decodedToken.user_id;
-
+  
     const data = {
       tag_id: tag_id,
       tag_type: tag_type,
@@ -83,7 +83,7 @@ const CreateProduct = () => {
       contact_address: formData.contact_address || null,
       owner: ownerId
     };
-
+  
     try {
       setLoading(true);
       await axios.post(`${config.API_URL}/products/add/`, data, {
@@ -92,16 +92,22 @@ const CreateProduct = () => {
           "Content-Type": "application/json",
         },
       });
-
+  
       localStorage.removeItem("tag_id");
       localStorage.removeItem("tag_type");
       setLoading(false);
       navigate("/app/products");
     } catch (err) {
       setLoading(false);
-      setError(err.response?.data.detail || "Error creating product. Please try again.");
+  
+      if (err.response?.data?.tag_id?.[0] === "product with this tag id already exists.") {
+        setError("A product with this tag ID already exists. Please use a different tag ID.");
+      } else {
+        setError(err.response?.data.detail || "Error creating product. Please try again.");
+      }
     }
   };
+  
 
   return (
     <div className={styles.container}>

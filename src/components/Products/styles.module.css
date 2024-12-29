@@ -82,6 +82,16 @@ h1 {
   justify-content: space-between;
   align-items: flex-start; 
 }
+.card {
+  position: relative;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 
 .card:hover {
   transform: scale(1.05);
@@ -178,4 +188,17 @@ h1 {
   .view_product_btn {
     padding: 14px;
   }
+}
+
+.delete_icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: white; 
+  transition: color 0.3s ease;
+}
+
+.delete_icon:hover {
+  color: white;
 }
