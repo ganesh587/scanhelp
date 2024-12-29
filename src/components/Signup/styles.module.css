@@ -70,6 +70,7 @@
 
 .input:focus {
 	border-color: #F0BB78;
+	background-color: white;
 }
 
 .error_msg {
