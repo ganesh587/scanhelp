@@ -5,9 +5,13 @@ import { Helmet } from 'react-helmet';
 const Main = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/app/login");
+  const handleButtonClick = () => {
+    const token = localStorage.getItem("token"); 
+    if (token) {
+      navigate("/app/products");
+    } else {
+      navigate("/app/login");
+    }
   };
 
   return (
@@ -15,7 +19,9 @@ const Main = () => {
       <Helmet>
         <title>Home</title>
       </Helmet>
-      <button className={styles.login_button} onClick={handleLogout}>Login</button>
+      <button className={styles.login_button} onClick={handleButtonClick}>
+        GO TO SCAN
+      </button>
       <iframe
         id="myIframe"
         src="/main.html"
