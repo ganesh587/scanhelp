@@ -138,7 +138,21 @@
   }
 
   .input {
+    outline: none;
+    border: 1px solid #543A14;
+    width: 370px;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 5px 0;
     font-size: 14px;
+    transition: border-color 0.3s;
+    color: #543A14;
+    background-color: white;
+  }
+  
+  .input:focus {
+    border-color: #F0BB78;
+    background-color: white;
   }
 
   .green_btn {
