@@ -1,10 +1,9 @@
+import React, { useEffect } from 'react';
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet';
-
 const Main = () => {
   const navigate = useNavigate();
-
   const handleButtonClick = () => {
     const token = localStorage.getItem("token"); 
     if (token) {
@@ -13,6 +12,24 @@ const Main = () => {
       navigate("/app/login");
     }
   };
+
+  useEffect(() => {
+    // Listen for messages from the iframe
+    const handleMessage = (event) => {
+
+      if (event.data.action === 'login') {
+        navigate("/app/login");
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    // Cleanup the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [navigate]);
+
 
   return (
     <div className={styles.main_container}>
