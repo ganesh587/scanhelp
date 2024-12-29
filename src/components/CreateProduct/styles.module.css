@@ -12,7 +12,7 @@
 }
 
 .create_product_container h1{
-  margin-left: 9rem;
+  text-align: center;
 }
 
     .container {
@@ -123,7 +123,7 @@ button:hover {
   }
 
   .create_product_container h1{
-    margin-left: 5rem;
+    text-align: center;
     font-size: 30px;
   }
 }
