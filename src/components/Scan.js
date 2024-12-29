@@ -1,59 +1,56 @@
-// src/components/Scan.js
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "./AuthContext"; // Import the useAuth hook
-import config from '../config';
+import { useAuth } from "./AuthContext";
+import config from "../config";
+import Spinner from "../components/Spinner";
 
 const Scan = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { setModalOpen } = useAuth(); // Use the auth context to manage modal state
+  const { setModalOpen } = useAuth();
 
-  // Extract tag_id and tag_type from the query parameters
   const queryParams = new URLSearchParams(location.search);
   const tagId = queryParams.get("t_id");
   const tagType = queryParams.get("t_t");
 
   useEffect(() => {
     const scanProduct = async () => {
-      // Check if the user is already logged in
+      setLoading(true);
       const token = localStorage.getItem("token");
-      if (token) {
-        // If logged in, redirect to create-product page with tag_id and tag_type
-        localStorage.setItem("tag_id", tagId);
-        localStorage.setItem("tag_type", tagType);
-        navigate("/app/create-product");
-        return; // Exit early since we are redirecting
-      }
-
       try {
+        if (token) {
+          localStorage.setItem("tag_id", tagId);
+          localStorage.setItem("tag_type", tagType);
+          navigate("/app/create-product");
+          return;
+        }
+
         const response = await axios.post(`${config.API_URL}/scan`, {
           tag_id: tagId,
           tag_type: tagType,
         });
 
-        // Check for error in response
         if (response.data.error) {
           localStorage.setItem("tag_id", tagId);
           localStorage.setItem("tag_type", tagType);
-          // Redirect to login if product not found
           navigate("/app/login");
         } else {
-          // If product found, redirect to ScannedProduct page with product data
           navigate("/app/scanned-product", { state: response.data });
         }
       } catch (error) {
         console.error("Error during scan:", error);
-        // Handle error (e.g., show a modal or message)
-        setModalOpen(true); // Optionally show a modal for error
+        setModalOpen(true);
+      } finally {
+        setLoading(false);
       }
     };
 
-    scanProduct(); // Call the scan function
-  }, [navigate, tagId, tagType, setModalOpen]); // Dependencies for useEffect
+    scanProduct();
+  }, [navigate, tagId, tagType, setModalOpen]);
 
-  return <div>Loading...</div>; // Show loading state while scanning
+  return <div>{loading && <Spinner />}</div>;
 };
 
 export default Scan;

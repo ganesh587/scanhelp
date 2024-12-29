@@ -1,50 +1,70 @@
-// src/components/ScannedProduct.js
 import React from "react";
 import { useLocation } from "react-router-dom";
-import styles from "./styles.module.css"; // Import your styles
+import styles from "./styles.module.css";
 
 const ScannedProduct = () => {
   const location = useLocation();
-  const { product_information, contact_information, reward_information, medical_details } = location.state; // Get product data from location state
-const tag_type = product_information.tag_type;
+
+  if (location.state?.message === "product display is off") {
+    return (
+      <div className={styles.modal}>
+        <div className={styles.modal_content}>
+          <h2>Product Unavailable</h2>
+          <p className={styles.center_text}>
+            The product display is currently off. Please try again later or
+            contact support for assistance.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const { product_information, contact_information, reward_information } =
+    location.state || {};
+  const tag_type = product_information?.tag_type;
+
   return (
-    <div className={styles.scanned_product_container}>
-      <h1>Scanned Product Details</h1>
-      {tag_type === "1" ? (
-        <>
-          <h2>Product: {product_information.product_name}</h2>
-          <h3>Description: {product_information.description}</h3>
-          <h3>Owner Information:</h3>
-          <p>Name: {contact_information.name || "N/A"}</p>
-          <p>Phone: {contact_information.phone_number || "N/A"}</p>
-          <p>Alternate Number: {contact_information.alternate_number || "N/A"}</p>
-          <p>Address: {contact_information.address || "N/A"}</p>
-          <h3>Reward Information:</h3>
-          <p>Reward Amount: {reward_information.reward_amount || "N/A"}</p>
-          <p>Note: {reward_information.note || "N/A"}</p>
-        </>
-      ) : tag_type === "2" ? (
-        <>
-          <h2>Vehicle: {product_information.product_name}</h2>
-          <h3>Description: {product_information.description}</h3>
-          <h3>Owner: {product_information.owner || "N/A"}</h3>
-          <h3>Contact Information:</h3>
-          <p>Name: {contact_information.name || "N/A"}</p>
-          <p>Phone: {contact_information.phone_number || "N/A"}</p>
-          <p>Alternate Number: {contact_information.alternate_number || "N/A"}</p>
-          <p>Address: {contact_information.address || "N/A"}</p>
-          <h3>Medical Details:</h3>
-          <p>Emergency Contact: {medical_details.emergency_contact || "N/A"}</p>
-          <p>Blood Group: {medical_details.blood_group || "N/A"}</p>
-          <p>Existing Health Issues: {medical_details.existing_health_issues || "N/A"}</p>
-          <p>Existing Medication: {medical_details.existing_medication || "N/A"}</p>
-          <p>Primary Doctor: {medical_details.primary_doctor || "N/A"}</p>
-          <p>Allergies: {medical_details.allergies || "N/A"}</p>
-          <p>Physically Disabled: {medical_details.physically_disabled ? "Yes" : "No"}</p>
-        </>
-      ) : (
-        <p>Unknown tag type.</p>
-      )}
+    <div className={styles.modal}>
+      <div className={styles.modal_content}>
+        {tag_type === "1" && (
+          <table className={styles.details_table}>
+            <tbody>
+              <tr>
+                <td>Product Name</td>
+                <td>{product_information.product_name || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td>{product_information.description || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Owner Name</td>
+                <td>{contact_information.name || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Phone Number</td>
+                <td>{contact_information.phone_number || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Alternate Number</td>
+                <td>{contact_information.alternate_number || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>{contact_information.address || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Reward Amount</td>
+                <td>{reward_information.reward_amount || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Reward Note</td>
+                <td>{reward_information.note || "N/A"}</td>
+              </tr>
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 };

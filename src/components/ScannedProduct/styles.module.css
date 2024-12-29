@@ -1,0 +1,107 @@
+/* General Modal Styles */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .modal_content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .center_text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .details_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .details_table th,
+  .details_table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .details_table th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .details_table td {
+    background-color: #f9f9f9;
+    color: #555;
+  }
+  
+  .details_table tr:nth-child(even) td {
+    background-color: #f1f1f1;
+  }
+  
+  .details_table td {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .details_table td:first-child {
+    font-weight: bold;
+  
+  }
+  
+  @media (max-width: 600px) {
+    .modal_content {
+      width: 100%;
+      padding: 20px;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    .details_table th,
+    .details_table td {
+      padding: 8px;
+    }
+  }
+  
+  /* Modal animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
