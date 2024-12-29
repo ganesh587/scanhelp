@@ -1,6 +1,5 @@
-// src/components/SessionExpiredModal.jsx
 import React from "react";
-import styles from "./styles.module.css"; // Create a CSS file for styling
+import styles from "./styles.module.css"; 
 
 const SessionExpiredModal = ({ onClose }) => {
   return (

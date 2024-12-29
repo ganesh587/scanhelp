@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
-import { FaUser, FaSignOutAlt, FaTrash } from "react-icons/fa"; // Add FaTrash for delete icon
+import { FaUser, FaSignOutAlt, FaTrash } from "react-icons/fa";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { useAuth } from "../AuthContext";
@@ -17,7 +17,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(""); // State to store success message
+  const [successMessage, setSuccessMessage] = useState("");
   const { isModalOpen, setModalOpen, handleSessionExpired } = useAuth();
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -86,7 +86,6 @@ const Products = () => {
       setLoading(false);
       setSuccessMessage("Product deleted successfully!");
       
-      // Re-fetch products after deletion
       fetchProducts();
     } catch (error) {
       setLoading(false);

@@ -3,7 +3,7 @@
   width: 100%;
   min-height: 100vh;
   background-color: #f7f4f2ff;
-  flex-wrap: wrap; /* Allow the left and right sections to stack on smaller screens */
+  flex-wrap: wrap; 
 }
 
 .left {
@@ -16,8 +16,7 @@
     135deg,
     rgba(250, 121, 48, 0.8),
     rgba(215, 109, 43, 0.8)
-  ),
-  url('https://files.oaiusercontent.com/file-7YjYmgjEh1HnfxrHbFHRhQ?se=2024-12-28T12%3A43%3A16Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D5eb72096-be0e-4e0b-8f20-7f4bacaf79fb.webp&sig=Jxk29nfp1sG/KUYulwVRnvRk/o8JjYVIKA0cwnQVKlo%3D');
+  ); 
   background-size: cover;
   background-position: center;
   color: #f7f4f2ff;
@@ -30,7 +29,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  min-height: 100vh; /* Ensures the right section takes full height */
+  min-height: 100vh; 
 }
 
 .form_container {
@@ -38,7 +37,7 @@
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the form horizontally */
+  align-items: center; 
 }
 
 .form_container h1 {
@@ -50,7 +49,7 @@
   display: flex;
   align-items: center;
   margin: 10px 0;
-  width: 100%; /* Make input containers responsive */
+  width: 100%; 
 }
 
 .input {

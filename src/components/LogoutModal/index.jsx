@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles.module.css"; // Ensure you have the necessary styles
+import styles from "./styles.module.css"; 
 
 const LogoutModal = ({ onConfirm, onCancel }) => {
   return (

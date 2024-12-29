@@ -1,4 +1,3 @@
-// src/AuthContext.js
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,8 +13,8 @@ export const AuthProvider = ({ children }) => {
 
   const handleSessionExpired = () => {
     setModalOpen(true);
-    localStorage.removeItem("token"); // Clear the token
-    navigate("/app/login"); // Redirect to login page
+    localStorage.removeItem("token"); 
+    navigate("/app/login");
   };
 
   return (

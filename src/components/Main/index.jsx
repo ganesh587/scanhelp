@@ -4,17 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 const Main = () => {
   const navigate = useNavigate();
-  const handleButtonClick = () => {
-    const token = localStorage.getItem("token"); 
-    if (token) {
-      navigate("/app/products");
-    } else {
-      navigate("/app/login");
-    }
-  };
 
   useEffect(() => {
-    // Listen for messages from the iframe
     const handleMessage = (event) => {
 
       if (event.data.action === 'login') {
@@ -23,8 +14,6 @@ const Main = () => {
     };
 
     window.addEventListener('message', handleMessage);
-
-    // Cleanup the event listener when the component is unmounted
     return () => {
       window.removeEventListener('message', handleMessage);
     };

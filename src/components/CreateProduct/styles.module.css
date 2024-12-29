@@ -24,12 +24,12 @@
     }
 
 .card {
-  background-color: rgba(255, 249, 242, 0.9); /* Semi-transparent background for the form card */
+  background-color: rgba(255, 249, 242, 0.9);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  box-sizing: border-box; /* Ensures padding is inside the element */
+  box-sizing: border-box; 
 }
 
 .card h2 {
@@ -61,7 +61,7 @@
   background-color: #FFF9F2;
   color: #000000;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  box-sizing: border-box; /* Ensures padding does not affect width */
+  box-sizing: border-box; 
 }
 
 .form_group input:focus,
@@ -99,7 +99,6 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Mobile-friendly Styles */
 @media (max-width: 768px) {
   .create_product_container {
     padding: 30px;

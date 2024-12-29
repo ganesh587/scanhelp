@@ -1,4 +1,3 @@
-// src/App.js
 import { Route, Routes } from "react-router-dom";
 import Main from "./components/Main";
 import Signup from "./components/Signup";
