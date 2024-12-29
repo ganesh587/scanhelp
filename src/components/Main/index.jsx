@@ -36,9 +36,9 @@ const Main = () => {
       <Helmet>
         <title>Home</title>
       </Helmet>
-      <button className={styles.login_button} onClick={handleButtonClick}>
+      <h1>
       Register ScanNHelp Tag
-      </button>
+      </h1>
       <iframe
         id="myIframe"
         src="/main.html"
