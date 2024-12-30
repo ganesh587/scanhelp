@@ -83,7 +83,14 @@
                 <a href="#contactus" class="navigation-links-link2 navbar-link">
                   <span>Contact</span>
                 </a>
-
+                <a
+                href="https://scannhelp.myshopify.com/collections/all"
+                class="navigation-links-link2 navbar-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Buy Now</span>
+              </a> 
                 <a href="#" id="loginBtn" class="navigation-links-link1 navbar-link">
                   <span>Login</span>
                 </a>
@@ -136,11 +143,21 @@
                   >
                     <span>Contact</span>
                   </a>
+                 
                   <a
-                    href="login-signup.html"
-                    class="navigation-links-navlink1 navbar-link"
-                  >
-                    <span>Login/SignUp</span>
+                  href="https://scannhelp.myshopify.com/collections/all"
+                  class="navigation-links-link2 navbar-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Buy Now</span>
+                </a> 
+                  <a href="#" id="loginBtn1" class="navigation-links-link1 navbar-link">
+                    <span>Login</span>
+                  </a>
+  
+                  <a href="#" id="registerBtn1" class="navigation-links-link1 navbar-link">
+                    <span>Sign Up</span>
                   </a>
                 </nav>
                 <button class="navbar-primary-btn button-primary button">
@@ -460,6 +477,12 @@
         window.parent.postMessage({ action: 'login' }, '*');
       });
       document.getElementById('registerBtn').addEventListener('click', function() {
+        window.parent.postMessage({ action: 'register' }, '*');
+      });
+      document.getElementById('loginBtn1').addEventListener('click', function() {
+        window.parent.postMessage({ action: 'login' }, '*');
+      });
+      document.getElementById('registerBtn1').addEventListener('click', function() {
         window.parent.postMessage({ action: 'register' }, '*');
       });
       window.onload = () => {
