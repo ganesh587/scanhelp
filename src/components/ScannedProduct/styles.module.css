@@ -25,16 +25,6 @@
     align-items: center;
     justify-content: center;
   }
-
-  .modal_content {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 800px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.3s ease-out;
-  }
   
   h2 {
     font-size: 2rem;
@@ -89,11 +79,17 @@
   
   }
   
+  .unavailable_image {
+    width: 100%; 
+    max-width: 400px;
+    height: auto;
+    margin: 0 auto; 
+    display: block; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+  
   @media (max-width: 600px) {
-    .modal_content {
-      width: 100%;
-      padding: 20px;
-    }
   
     h2 {
       font-size: 1.5rem;

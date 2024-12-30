@@ -1,20 +1,25 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./styles.module.css";
-
+import { Helmet } from "react-helmet";
+import displayOffImage from '../../displayoff.jpg';
 const ScannedProduct = () => {
   const location = useLocation();
 
-  if (location.state?.message === "Product display is off") {
+  if (location.state?.message === "product display is off") {
     return (
       <div className={styles.modal}>
-        <div className={styles.modal_content}>
-          <h2>Product Unavailable</h2>
-          <p className={styles.center_text}>
-            The product display is currently off. Please try again later or
-            contact support for assistance.
-          </p>
-        </div>
+          <Helmet>
+        <title>Scanned Product</title>
+      </Helmet>
+      <div>
+  <img
+src={displayOffImage}
+    alt="Product unavailable"
+    className={styles.unavailable_image}
+  />
+</div>
+
       </div>
     );
   }
@@ -25,6 +30,9 @@ const ScannedProduct = () => {
 
   return (
     <div className={styles.modal}>
+        <Helmet>
+        <title>Scanned Product</title>
+      </Helmet>
       <div className={styles.modal_content}>
         {tag_type === "1" && (
           <table className={styles.details_table}>

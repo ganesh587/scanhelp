@@ -99,6 +99,12 @@ button:hover {
   transform: scale(1.05);
 }
 
+.large_checkbox {
+  width: 18px; 
+  height: 18px;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .create_product_container {
     padding: 30px;

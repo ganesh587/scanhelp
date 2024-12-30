@@ -53,13 +53,22 @@ const Product = ({ product, onClose,onSuccess  }) => {
         {error && <Message type="error" message={error} duration={5000} onClose={() => setError("")} />}
         {isLoading && <Spinner/>}
        <Helmet>
-        <title>Edit Product</title> 
+        <title>{formData.tag_type === 1 ? "Edit Product Tag" : "Edit Safety Tag"}</title> 
       </Helmet>
-      <div className={styles.modal_content}>
+      <div
+  className={styles.modal_content}
+  style={{
+    background: formData.tag_type === 1 
+      ? "#FFF0DC" 
+      : "linear-gradient(135deg, #ac2727, #f07878)"
+  }}
+>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <h2>Edit Product</h2>
+          <h2  style={{color: formData.tag_type !== 1 ? "whitesmoke" : ""}}>
+            {formData.tag_type === 1 ? "Edit Product Tag" : "Edit Safety Tag"}
+            </h2>
           <div className={styles.form_group}>
-            <label htmlFor="product_name">Product Name</label>
+            <label style={{color: formData.tag_type !== 1 ? "whitesmoke" : ""}} htmlFor="product_name">Product Name</label>
             <input
               id="product_name"
               type="text"
@@ -71,7 +80,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
           </div>
 
           <div className={styles.form_group}>
-            <label htmlFor="description">Description</label>
+            <label style={{color: formData.tag_type !== 1 ? "whitesmoke" : ""}} htmlFor="description">Description</label>
             <textarea
               id="description"
               name="description"
@@ -82,7 +91,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
           </div>
 
           <div className={styles.form_group}>
-            <label htmlFor="contact_name">Contact Name</label>
+            <label style={{color: formData.tag_type !== 1 ? "whitesmoke" : ""}} htmlFor="contact_name">Contact Name</label>
             <input
               id="contact_name"
               type="text"
@@ -93,7 +102,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
           </div>
 
           <div className={styles.form_group}>
-            <label htmlFor="contact_phone">Contact Phone</label>
+            <label style={{color: formData.tag_type !== 1 ? "whitesmoke" : ""}} htmlFor="contact_phone">Contact Phone</label>
             <input
               id="contact_phone"
               type="text"
@@ -104,7 +113,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
           </div>
 
           <div className={styles.form_group}>
-            <label htmlFor="contact_alternate_number">Contact Alternate Number</label>
+            <label style={{color: formData.tag_type !== 1 ? "whitesmoke" : ""}} htmlFor="contact_alternate_number">Contact Alternate Number</label>
             <input
               id="contact_alternate_number"
               type="text"
@@ -115,14 +124,13 @@ const Product = ({ product, onClose,onSuccess  }) => {
           </div>
 
           <div className={styles.form_group}>
-            <label htmlFor="contact_address">Contact Address</label>
-            <input
-              id="contact_address"
-              type="text"
-              name="contact_address"
-              value={formData.contact_address || ""}
-              onChange={handleChange}
-            />
+            <label style={{color: formData.tag_type !== 1 ? "whitesmoke" : ""}} htmlFor="contact_address">Contact Address</label>
+             <textarea
+                  id="contact_address"
+                  name="contact_address"
+                  value={formData.contact_address || ""}
+                  onChange={handleChange}
+                />
           </div>
 
           {product.tag_type === 1 && (
@@ -153,7 +161,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
           {product.tag_type === 2 && (
             <>
               <div className={styles.form_group}>
-                <label htmlFor="Emergency_Contact">Emergency Contact</label>
+                <label style={{color: "whitesmoke"}} htmlFor="Emergency_Contact">Emergency Contact</label>
                 <input
                   id="Emergency_Contact"
                   type="text"
@@ -164,7 +172,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="blood_group">Blood Group</label>
+                <label style={{color: "whitesmoke"}} htmlFor="blood_group">Blood Group</label>
                 <input
                   id="blood_group"
                   type="text"
@@ -175,7 +183,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="existing_health_issues">Existing Health Issues</label>
+                <label style={{color: "whitesmoke"}} htmlFor="existing_health_issues">Existing Health Issues</label>
                 <input
                   id="existing_health_issues"
                   type="text"
@@ -186,7 +194,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="existing_medication">Existing Medication</label>
+                <label style={{color: "whitesmoke"}} htmlFor="existing_medication">Existing Medication</label>
                 <input
                   id="existing_medication"
                   type="text"
@@ -197,7 +205,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="primary_doctor">Primary Doctor</label>
+                <label style={{color: "whitesmoke"}} htmlFor="primary_doctor">Primary Doctor</label>
                 <input
                   id="primary_doctor"
                   type="text"
@@ -208,7 +216,7 @@ const Product = ({ product, onClose,onSuccess  }) => {
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="allergies">Allergies</label>
+                <label style={{color: "whitesmoke"}} htmlFor="allergies">Allergies</label>
                 <input
                   id="allergies"
                   type="text"
@@ -219,10 +227,11 @@ const Product = ({ product, onClose,onSuccess  }) => {
               </div>
 
               <div className={styles.checkbox_group}>
-                <label htmlFor="physically_disabled">
+                <label style={{color: "whitesmoke"}} htmlFor="physically_disabled">
                   Physically Disabled
                   <input
                     id="physically_disabled"
+                    className={styles.large_checkbox}
                     type="checkbox"
                     checked={formData.physically_disabled || false}
                     onChange={() => setFormData({ ...formData, physically_disabled: !formData.physically_disabled })}
@@ -233,9 +242,10 @@ const Product = ({ product, onClose,onSuccess  }) => {
           )}
 
           <div className={styles.checkbox_group}>
-            <label htmlFor="display">
-              Display
+            <label style={{color: formData.tag_type !== 1 ? "whitesmoke" : ""}} htmlFor="display">
+              {formData.tag_type === 1 ? "Mark as Lost" : "Show personel info"}
               <input
+               className={styles.large_checkbox}
                 id="display"
                 type="checkbox"
                 checked={formData.display}

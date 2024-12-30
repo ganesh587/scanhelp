@@ -8,22 +8,28 @@ import Spinner from "../Spinner";
 import Message from '../Message';
 
 const CreateProduct = () => {
+  const tag_type = localStorage.getItem("tag_type");
+  const tag_id = localStorage.getItem("tag_id");
   const [formData, setFormData] = useState({
     product_name: "",
     description: "",
-    display: false,
     contact_name: "",
     contact_phone: "",
     contact_alternate_number: "", 
     contact_address: "",
+    emergency_contact: "",
+    blood_group: "",
+    existing_health_issues: "",
+    existing_medication: "",
+    primary_doctor: "",
+    allergies: "",
     tag_type: 1
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const tag_type = localStorage.getItem("tag_type");
-  const tag_id = localStorage.getItem("tag_id");
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -73,11 +79,17 @@ const CreateProduct = () => {
       tag_type: tag_type,
       product_name: formData.product_name,
       description: formData.description,
-      display: formData.display,
       contact_name: formData.contact_name,
       contact_phone: formData.contact_phone,
       contact_alternate_number: formData.contact_alternate_number || null,
       contact_address: formData.contact_address || null,
+      emergency_contact: formData.tag_type === "2" ? formData.emergency_contact : null,
+      blood_group: formData.tag_type === "2" ? formData.blood_group : null,
+      existing_health_issues: formData.tag_type === "2" ? formData.existing_health_issues : null,
+      existing_medication: formData.tag_type === "2" ? formData.existing_medication : null,
+      primary_doctor: formData.tag_type === "2" ? formData.primary_doctor : null,
+      allergies: formData.tag_type === "2" ? formData.allergies : null,
+      physically_disabled: formData.tag_type === "2" ? formData.physically_disabled : false,
       owner: ownerId
     };
   
@@ -193,17 +205,42 @@ const CreateProduct = () => {
               />
             </div>
           </div>
-
-          <div className={styles.switch_container}>
-            <label>
-              {tag_type === 1 ? 'Mark as Lost':'Display Health Info '}
-              <input
-                type="checkbox"
-                checked={formData.display}
-                onChange={() => setFormData((prevData) => ({ ...prevData, display: !prevData.display }))}
-              />
-            </label>
+          
+          {tag_type === "2" && (
+          <div className={styles.card}>
+            <h2>Medical Details</h2>
+            <div className={styles.form_group}>
+              <label htmlFor="emergency_contact">Emergency Contact</label>
+              <input type="text" id="emergency_contact" name="emergency_contact" placeholder="Emergency Contact" value={formData.emergency_contact} onChange={handleChange} />
+            </div>
+            <div className={styles.form_group}>
+              <label htmlFor="blood_group">Blood Group</label>
+              <input type="text" id="blood_group" name="blood_group" placeholder="Blood Group" value={formData.blood_group} onChange={handleChange} />
+            </div>
+            <div className={styles.form_group}>
+              <label htmlFor="existing_health_issues">Existing Health Issues</label>
+              <input type="text" id="existing_health_issues" name="existing_health_issues" placeholder="Existing Health Issues" value={formData.existing_health_issues} onChange={handleChange} />
+            </div>
+            <div className={styles.form_group}>
+              <label htmlFor="existing_medication">Existing Medication</label>
+              <input type="text" id="existing_medication" name="existing_medication" placeholder="Existing Medication" value={formData.existing_medication} onChange={handleChange} />
+            </div>
+            <div className={styles.form_group}>
+              <label htmlFor="primary_doctor">Primary Doctor</label>
+              <input type="text" id="primary_doctor" name="primary_doctor" placeholder="Primary Doctor" value={formData.primary_doctor} onChange={handleChange} />
+            </div>
+            <div className={styles.form_group}>
+              <label htmlFor="allergies">Allergies</label>
+              <input type="text" id="allergies" name="allergies" placeholder="Allergies" value={formData.allergies} onChange={handleChange} />
+            </div>
+            <div className={styles.switch_container}>
+              <label>
+                Physically Disabled
+                <input type="checkbox" className={styles.large_checkbox} checked={formData.physically_disabled} onChange={() => setFormData(prevData => ({ ...prevData, physically_disabled: !prevData.physically_disabled }))} />
+              </label>
+            </div>
           </div>
+        )}
 
           <button type="submit">Create Product</button>
         </form>

@@ -75,32 +75,45 @@ const EditProfileModal = ({ userId, onClose,onSuccess }) => {
           <h2>Edit Profile</h2>
           {loading && <Spinner />}
           <form onSubmit={handleSubmit} className={styles.form}>
-            {[
-              { label: "Email", type: "email", name: "email", required: true },
-              { label: "Name", type: "text", name: "name", required: true },
-              { label: "Phone", type: "text", name: "phone", required: false },
-              { label: "Alternate Number", type: "text", name: "alternate_number", required: false },
-              { label: "Address", type: "text", name: "address", required: false },
-            ].map(({ label, type, name, required }) => (
-              <div className={styles.form_group} key={name}>
-                <label htmlFor={name} className={styles.label}>{label}</label>
-                <input
-                  type={type}
-                  name={name}
-                  id={name}
-                  placeholder={`Enter your ${label.toLowerCase()}`}
-                  value={formData[name]}
-                  onChange={handleChange}
-                  className={styles.input}
-                  required={required}
-                />
-              </div>
-            ))}
-            <div className={styles.button_group}>
-              <button type="submit" className={styles.submit_button}>Save</button>
-              <button type="button" onClick={onClose} className={styles.close_button}>Cancel</button>
-            </div>
-          </form>
+  {[
+    { label: "Email", type: "email", name: "email", required: true },
+    { label: "Name", type: "text", name: "name", required: true },
+    { label: "Phone", type: "text", name: "phone", required: false },
+    { label: "Alternate Number", type: "text", name: "alternate_number", required: false },
+    { label: "Address", type: "text", name: "address", required: false },
+  ].map(({ label, type, name, required }) => (
+    <div className={styles.form_group} key={name}>
+      <label htmlFor={name} className={styles.label}>{label}</label>
+      {name === "address" ? (
+        <textarea
+          name={name}
+          id={name}
+          placeholder={`Enter your ${label.toLowerCase()}`}
+          value={formData[name]}
+          onChange={handleChange}
+          className={styles.textarea}
+          required={required}
+        />
+      ) : (
+        <input
+          type={type}
+          name={name}
+          id={name}
+          placeholder={`Enter your ${label.toLowerCase()}`}
+          value={formData[name]}
+          onChange={handleChange}
+          className={styles.input}
+          required={required}
+        />
+      )}
+    </div>
+  ))}
+  <div className={styles.button_group}>
+    <button type="submit" className={styles.submit_button}>Save</button>
+    <button type="button" onClick={onClose} className={styles.close_button}>Cancel</button>
+  </div>
+</form>
+
         </div>
       </div>
     </>

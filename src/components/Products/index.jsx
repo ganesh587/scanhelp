@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./styles.module.css";
 import { FaUser, FaSignOutAlt, FaTrash } from "react-icons/fa";
 import { jwtDecode } from "jwt-decode";
@@ -65,7 +65,7 @@ const Products = () => {
 
     const intervalId = setInterval(checkToken, 1000);
     return () => clearInterval(intervalId);
-  }, [fetchProducts,handleSessionExpired]);
+  }, [fetchProducts, handleSessionExpired]);
 
   const handleDeleteProduct = async (productId) => {
     try {
@@ -124,7 +124,15 @@ const Products = () => {
         <title>Products</title>
       </Helmet>
       {isModalOpen && <SessionExpiredModal onClose={() => setModalOpen(false)} />}
-      {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")).user_id} onClose={() => setEditModalOpen(false)}/>}
+      {isEditModalOpen && (
+        <EditProfileModal
+          userId={jwtDecode(localStorage.getItem("token")).user_id}
+          onClose={() => {
+            setEditModalOpen(false);
+            fetchProducts(); // Fetch products after closing the modal
+          }}
+        />
+      )}
       {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} onSuccess={handleEditProfileSuccess} />}
       {isLogoutModalOpen &&   <QuestionModal title="Logout" message="Are you sure you want to logout?" onConfirm={handleLogoutConfirm} onCancel={handleLogoutCancel}/>}
 
@@ -143,7 +151,12 @@ const Products = () => {
           </div>
         ) : (
           products.map((product) => (
-            <div key={product.id} className={styles.card}>
+            <div key={product.id} className={styles.card}
+            style={{
+              background: product.tag_type === 1 
+                ? "linear-gradient(135deg, #543A14, #F0BB78)" 
+                : "linear-gradient(135deg, #ac2727, #f07878)"
+            }}>
               <h2>{product.product_name}</h2>
               <p>{product.description}</p>
               <div className={styles.card_actions}>
