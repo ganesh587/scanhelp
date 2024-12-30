@@ -124,15 +124,7 @@ const Products = () => {
         <title>Products</title>
       </Helmet>
       {isModalOpen && <SessionExpiredModal onClose={() => setModalOpen(false)} />}
-      {isEditModalOpen && (
-        <EditProfileModal
-          userId={jwtDecode(localStorage.getItem("token")).user_id}
-          onClose={() => {
-            setEditModalOpen(false);
-            fetchProducts(); // Fetch products after closing the modal
-          }}
-        />
-      )}
+      {isEditModalOpen && <EditProfileModal userId={jwtDecode(localStorage.getItem("token")).user_id} onClose={() => setEditModalOpen(false)}/>}
       {selectedProduct && <ProductModal product={selectedProduct} onClose={() =>{ setSelectedProduct(null);fetchProducts()}} onSuccess={handleEditProfileSuccess} />}
       {isLogoutModalOpen &&   <QuestionModal title="Logout" message="Are you sure you want to logout?" onConfirm={handleLogoutConfirm} onCancel={handleLogoutCancel}/>}
 
