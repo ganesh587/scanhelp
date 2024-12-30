@@ -133,7 +133,7 @@ const Products = () => {
           }}
         />
       )}
-      {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} onSuccess={handleEditProfileSuccess} />}
+      {selectedProduct && <ProductModal product={selectedProduct} onClose={() =>{ setSelectedProduct(null);fetchProducts()}} onSuccess={handleEditProfileSuccess} />}
       {isLogoutModalOpen &&   <QuestionModal title="Logout" message="Are you sure you want to logout?" onConfirm={handleLogoutConfirm} onCancel={handleLogoutCancel}/>}
 
       <div className={styles.header}>
