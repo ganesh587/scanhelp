@@ -162,6 +162,9 @@
   .register_text {
     font-size: 14px;
   }
+  .icon{
+    margin-right: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
