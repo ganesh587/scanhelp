@@ -24,7 +24,7 @@ src={displayOffImage}
     );
   }
 
-  const { product_information, contact_information, reward_information } =
+  const { product_information, contact_information, reward_information,medical_details } =
     location.state || {};
   const tag_type = product_information?.tag_type;
 
@@ -61,6 +61,38 @@ src={displayOffImage}
                 <td>Address</td>
                 <td>{contact_information.address || "N/A"}</td>
               </tr>
+              {tag_type === "2" && (
+                <>
+                 <tr>
+                <td>Emergency Contact</td>
+                <td>{medical_details.emergency_contact || "N/A"}</td>
+              </tr>   
+              <tr>
+                <td>Blood Group</td>
+                <td>{medical_details.blood_group || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Existing health issues</td>
+                <td>{medical_details.existing_health_issues || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Existing Medication</td>
+                <td>{medical_details.existing_medication || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Primary doctor</td>
+                <td>{medical_details.primary_doctor || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Allergies</td>
+                <td>{medical_details.allergies || "N/A"}</td>
+              </tr>
+              <tr>
+                <td>Physically disabled</td>
+                <td>{medical_details.physically_disabled ? "Yes" : "No" }</td>
+              </tr>
+              </>
+               )}
               {tag_type === "1" && (
                 <>
               <tr>
