@@ -34,7 +34,7 @@ src={displayOffImage}
         <title>Scanned Product</title>
       </Helmet>
       <div className={styles.modal_content}>
-        {tag_type === "1" && (
+      
           <table className={styles.details_table}>
             <tbody>
               <tr>
@@ -61,6 +61,8 @@ src={displayOffImage}
                 <td>Address</td>
                 <td>{contact_information.address || "N/A"}</td>
               </tr>
+              {tag_type === "1" && (
+                <>
               <tr>
                 <td>Reward Amount</td>
                 <td>{reward_information.reward_amount || "N/A"}</td>
@@ -69,9 +71,11 @@ src={displayOffImage}
                 <td>Reward Note</td>
                 <td>{reward_information.note || "N/A"}</td>
               </tr>
+              </>
+               )}
             </tbody>
           </table>
-        )}
+       
       </div>
     </div>
   );
